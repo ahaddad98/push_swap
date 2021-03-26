@@ -6,7 +6,7 @@
 #    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/03/26 15:23:00 by ahaddad          ###   ########.fr        #
+#    Updated: 2021/03/26 16:34:28 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ HDR_PATH= includes
 OBJ_PATH= obj
 LIB_PATH= libft
 
-SRC_NAME=*.c
+SRC_NAME=sa.c\
+		main.c\
 
 HDR_NAME=push_swap.h
 

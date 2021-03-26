@@ -1,22 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   sa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/26 16:33:54 by ahaddad          ###   ########.fr       */
+/*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
+/*   Updated: 2021/03/26 16:46:57 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# include "../libft/libft.h"
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <unistd.h>
+#include "../includes/push_swap.h"
 
-char        *sa(char *tab);
+char        *sa(char *tab)
+{
+    char        *new;
+    int         tmp;
 
-#endif
+    if (!(new = ft_strdup(tab)))
+        return (NULL);
+    tmp = new[0];
+    new[0] = new[1];
+    new[1] = tmp;
+    return (new);
+}
