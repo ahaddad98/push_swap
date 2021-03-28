@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/28 17:21:47 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/29 01:26:46 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,6 @@ int				count_line(char **env)
 	while (env[i])
 		i++;
 	return (i);
-}
-
- void         convert_tab(char **tab, int **a)
-{
-    int len;
-    len = count_line(tab);
-    *a = malloc(sizeof(int) * len);
-    int i = 1;
-    int k = 0;
-    while (tab[i])
-    {
-        (*a)[k] = ft_atoi(tab[i]);
-        k++;
-        i++;
-    }
 }
 
 char			**ft_strdup_2d(char **str)
@@ -58,63 +43,32 @@ char			**ft_strdup_2d(char **str)
 	return (ret);
 }
 
-void    rotate(char **a)
+int     is_ok()
 {
-    char *p;
-    int  i = 0;
-    int j = 1;
-    p = ft_strdup(a[0]);
-    while (a[j])
-    {
-        a[i] = ft_strdup(a[j]);
-        i++;
-        j++;
-    }
-    a[i] = ft_strdup(p);
+    ft_putstr_fd("OK\n", 1);
+    return (0);
 }
 
-void        rot_rot(char **a)
+int     is_ko()
 {
-    char *p;
-    int i = 0;
-    int j = 1;
-    char **new_a;
-    int len = count_line(a);
-    new_a = malloc(sizeof(char *) * (len + 1));
-    // p = ft_strdup(a[0]);
-    // printf("{{{%s}}}\n",a[len -1]);
-    new_a[0] = ft_strdup(a[len - 1]);
-    while (i < len - 1)
-    {
-        // printf("{%s}\n",a[i]);
-        new_a[j] = ft_strdup(a[i]);
-        j++;
-        i++;
-    }
-    new_a[j] = NULL;
-    j = 0;
-    while (new_a[j])
-    {
-        a[j] = ft_strdup(new_a[j]);
-        j++;
-    }
+    ft_putstr_fd("KO\n", 1);
+    return (0);
+}
+
+int     is_error()
+{
+    ft_putstr_fd("Error\n", 1);
+    return (0);
+
 }
 
 int main(int ac, char **av)
 {
-    char        **a;
     int         i = 1;
     int         k = 0;
-    char        **b;
     t_push_swap push_swap;
-    a = NULL;
-    b = NULL;
-    if (ac == 1)
-        ft_putstr_fd("one element\n", 1);
-    else if (ac == 0)
-        ft_putstr_fd("no element\n", 1);
-    if (av[0])
-        ft_putstr_fd("OK\n", 1);
+
+    push_swap.checker = 0;
     push_swap.a = malloc(sizeof(char *) * ac);
     while (i < ac)
     {
@@ -123,18 +77,47 @@ int main(int ac, char **av)
         k++;
     }
     push_swap.a[k] = NULL;
+    push_swap.b = NULL;
+    swap(push_swap.a, &push_swap);
+    rot_rot(push_swap.a, &push_swap);
+    push_swap.b = push_b(&push_swap);
+    // rotate(push_swap.a);
+    // push_swap.a = push_a(&push_swap);
+    // if (push_swap.checker == 1)
+    // {
+    //     return (is_ko());
+    // }
+    // else
+    // {
+    //     return (is_ok());
+    // }
     k = 0;
-    push_swap.b = malloc(sizeof(char *) * 1);
-    push_swap.b[0] = ft_strdup("22200");
-    rot_rot(push_swap.a);
+    //push_swap.b = malloc(sizeof(char *) * 1);
+    // push_swap.b[0] = ft_strdup("22200");
+    // rot_rot(push_swap.a);
     // swap(push_swap.a);
     if (push_swap.a == NULL)
     {
         puts("{raha NULL sir 3allah}");
     }
+    puts("----------------------------this is a-----------------------------------");
     while (push_swap.a[k])
     {
-        printf("%s\n",push_swap.a[k]);
+        printf("%s\n", push_swap.a[k]);
+        k++;
+    }
+    puts("----------------------------this is b-----------------------------------");
+    k = 0;
+    while (push_swap.b[k])
+    {
+        printf("%s\n", push_swap.b[k]);
+        k++;
+    }
+    puts("----------------------------this is b after pp-----------------------------------");
+    k = 0;
+    while (push_swap.a[k])
+    {
+        printf("%s\n", push_swap.a[k]);
         k++;
     }
     return (0);

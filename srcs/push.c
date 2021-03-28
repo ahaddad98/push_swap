@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/03/28 14:36:25 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/29 01:03:37 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,12 @@ char        **push_a(t_push_swap *push_swap)
     int len_a;
     int i = 0;
     int j = 1;
+
+    if (push_swap->b == NULL)
+    {
+        push_swap->checker = 1;
+        return (push_swap->a);
+    }
     new_a = malloc(sizeof(char *) * (count_line(push_swap->a) + 2));
     new_a[0] = ft_strdup(push_swap->b[0]);
     while (push_swap->a[i])
@@ -54,30 +60,45 @@ char        **push_b(t_push_swap *push_swap)
     int len_a;
     int i = 0;
     int j = 1;
-    new_b = malloc(sizeof(char *) * (count_line(push_swap->b) + 2));
-    new_b[0] = ft_strdup(push_swap->a[0]);
-    while (push_swap->b[i])
+
+    if (push_swap->a == NULL)
     {
-        new_b[j] = ft_strdup(push_swap->b[i]);
-        i++;
-        j++;
+        push_swap->checker = 1;
+        return (push_swap->b);
     }
-    new_b[j] = NULL;
-    if ((count_line(push_swap->a) - 1) <= 0)
-        push_swap->a = NULL;
+    if (count_line(push_swap->b) == 0)
+    {
+        new_b = malloc(sizeof(char *) * (count_line(push_swap->b) + 2));
+        new_b[0] = ft_strdup(push_swap->a[0]);
+        new_b[1] = NULL;
+    }
     else
     {
-        new_a = malloc(sizeof(char *) * (count_line(push_swap->a) - 1));
-        i = 0;
-        j = 1;
-        while (push_swap->a[j])
+        new_b = malloc(sizeof(char *) * (count_line(push_swap->b) + 2));
+        new_b[0] = ft_strdup(push_swap->a[0]);
+        while (push_swap->b[i])
         {
-            new_a[i] = ft_strdup(push_swap->a[j]);
+            new_b[j] = ft_strdup(push_swap->b[i]);
             i++;
             j++;
         }
-        new_a[i] = NULL;
-        push_swap->a = ft_strdup_2d(new_a);
+        new_b[j] = NULL;
+        if ((count_line(push_swap->a) - 1) <= 0)
+            push_swap->a = NULL;
+        else
+        {
+            new_a = malloc(sizeof(char *) * (count_line(push_swap->a) - 1));
+            i = 0;
+            j = 1;
+            while (push_swap->a[j])
+            {
+                new_a[i] = ft_strdup(push_swap->a[j]);
+                i++;
+                j++;
+            }
+            new_a[i] = NULL;
+            push_swap->a = ft_strdup_2d(new_a);
+        }
     }
     return (new_b);
 }

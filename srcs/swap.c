@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   sa.c                                               :+:      :+:    :+:   */
+/*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/28 14:39:25 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/29 00:25:06 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,10 +30,15 @@ int		ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void        swap(char **tab)
+void        swap(char **tab, t_push_swap *push_swap)
 {
     char *p;
 
+	if (count_line(tab) <= 1)
+	{
+		push_swap->checker = 1;
+		return ;
+	}
     p = ft_strdup(tab[0]);
     tab[0] = ft_strdup(tab[1]);
     tab[1] = ft_strdup(p);

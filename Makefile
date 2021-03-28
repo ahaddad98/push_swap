@@ -6,7 +6,7 @@
 #    By: amine <amine@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/03/28 14:37:27 by amine            ###   ########.fr        #
+#    Updated: 2021/03/28 23:40:24 by amine            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,9 +16,11 @@ HDR_PATH= includes
 OBJ_PATH= obj
 LIB_PATH= libft
 
-SRC_NAME=sa.c\
+SRC_NAME=swap.c\
 		main.c\
 		push.c\
+		rotation.c\
+		
 
 HDR_NAME=push_swap.h
 
