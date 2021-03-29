@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/29 01:15:23 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/29 14:45:16 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,18 @@ typedef struct s_push_swap
     char        **a;
     char        **b;
     int         checker;
-}   t_push_swap;
+}           t_push_swap;
 
-void        swap(char **ab, t_push_swap *push_swap);
+void        swap_a(char **ab, t_push_swap *push_swap);
 char        **push_a(t_push_swap *push_swap);
-char        **push_b(t_push_swap *push_swap);
+void        push_b(t_push_swap *push_swap);
 char		**ft_strdup_2d(char **str);
 int			count_line(char **env);
 void        rotate(char **a, t_push_swap *push_swap);
 void        rot_rot(char **a, t_push_swap *push_swap);
-
+int         ft_strcmp(const char *s1, const char *s2);
+void        swap_b(char **tab, t_push_swap *push_swap);
+void		ft_free_2dem_arr(void ***arr);
+void		ft_free_arr(void **array);
+void        push_b_2(t_push_swap *push_swap);
 #endif

@@ -3,14 +3,36 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/29 01:26:46 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/29 16:19:21 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/push_swap.h"
+
+void		ft_free_arr(void **array)
+{
+	if (*array)
+		free(*array);
+	*array = NULL;
+}
+
+void		ft_free_2dem_arr(void ***arr)
+{
+	int i;
+
+	i = 0;
+	while ((*arr)[i])
+	{
+		free((*arr)[i]);
+		(*arr)[i] = NULL;
+		i++;
+	}
+	free(*arr);
+	*arr = NULL;
+}
 
 int				count_line(char **env)
 {
@@ -32,7 +54,7 @@ char			**ft_strdup_2d(char **str)
 
 	i = 0;
 	len = count_line(str);
-	ret = malloc(sizeof(char *) * (len + 1));
+	ret = malloc(sizeof(char *) * (len + 2));
 	i = 0;
 	while (str[i])
 	{
@@ -62,12 +84,38 @@ int     is_error()
 
 }
 
+void print(t_push_swap *push_swap)
+{
+    int k = 0;
+    int i = 0;
+    printf("|            a            |            b            |\n");
+    printf("|---------------------------------------------------|\n");
+    // puts("laloli");
+    // ft_putnbr_fd(count_line(push_swap->a), 1);
+    // puts("--------------------------");
+    // ft_putnbr_fd(count_line(push_swap->b), 1);
+    while (push_swap->a[k] || count_line(push_swap->b) > 0)
+    {
+        if (push_swap->a[k] && (push_swap->b && push_swap->b[i]))
+            printf("|            %s            |            %s            |\n", push_swap->a[k], push_swap->b[i]);
+        else if (!push_swap->a[k] && (push_swap->b && push_swap->b[i]))
+            printf("|                         |            %s            |\n", push_swap->b[i]);
+        else if (push_swap->a[k] && !push_swap->b)
+            printf("|            %s            |                         |\n", push_swap->a[k]);
+        if (push_swap->a[k])
+            k++;
+        if (push_swap->b && push_swap->b[i])
+            i++;
+    }
+}
+
 int main(int ac, char **av)
 {
     int         i = 1;
     int         k = 0;
     t_push_swap push_swap;
-
+    char    *line;
+    int        ret_read;
     push_swap.checker = 0;
     push_swap.a = malloc(sizeof(char *) * ac);
     while (i < ac)
@@ -78,46 +126,76 @@ int main(int ac, char **av)
     }
     push_swap.a[k] = NULL;
     push_swap.b = NULL;
-    swap(push_swap.a, &push_swap);
-    rot_rot(push_swap.a, &push_swap);
-    push_swap.b = push_b(&push_swap);
-    // rotate(push_swap.a);
-    // push_swap.a = push_a(&push_swap);
-    // if (push_swap.checker == 1)
-    // {
-    //     return (is_ko());
-    // }
-    // else
-    // {
-    //     return (is_ok());
-    // }
-    k = 0;
-    //push_swap.b = malloc(sizeof(char *) * 1);
-    // push_swap.b[0] = ft_strdup("22200");
-    // rot_rot(push_swap.a);
-    // swap(push_swap.a);
-    if (push_swap.a == NULL)
+    push_swap.checker = 0;
+    while (1)
     {
-        puts("{raha NULL sir 3allah}");
+        line =  malloc(sizeof(char) * 1000);
+        ft_bzero(line, sizeof(char) * 1000);
+        ret_read = read(0, line, 1000);
+        if (!ft_strcmp(line, "\n"))
+            continue ;
+        if (!ft_strcmp(line, "sa\n"))
+            swap_a(push_swap.a, &push_swap);
+        if (!ft_strcmp(line, "sb\n"))
+            swap_b(push_swap.b, &push_swap);
+        if (!ft_strcmp(line, "ss\n"))
+        {
+            swap_a(push_swap.b, &push_swap);
+            swap_b(push_swap.a, &push_swap);
+        }
+        if (!ft_strcmp(line, "pa\n"))
+        {
+            push_swap.a = push_a(&push_swap);
+        }
+        if (!ft_strcmp(line, "pb\n"))
+            push_b(&push_swap);
+        if (!ft_strcmp(line, "ra\n"))
+            rotate(push_swap.a, &push_swap);
+        if (!ft_strcmp(line, "rb\n"))
+            rotate(push_swap.b, &push_swap);
+        if (!ft_strcmp(line, "rr\n"))
+        {
+            rotate(push_swap.a, &push_swap);
+            rotate(push_swap.b, &push_swap);
+        }
+        if (!ft_strcmp(line, "rra\n"))
+            rot_rot(push_swap.a, &push_swap);
+        if (!ft_strcmp(line, "rrb\n"))
+            rot_rot(push_swap.b, &push_swap);
+        if (!ft_strcmp(line, "rrr\n"))
+        {
+            rot_rot(push_swap.a, &push_swap);
+            rot_rot(push_swap.b, &push_swap);
+        }
+        if (count_line(push_swap.b) != 0)
+            push_swap.checker = 1;
+        if (ft_strlen(line) == 0)
+            break ;
     }
-    puts("----------------------------this is a-----------------------------------");
+    if (!push_swap.b)
+        push_swap.checker = 0;
+    if (push_swap.checker == 1)
+        ft_putendl_fd("KO", 1);
+    else
+        ft_putendl_fd("OK", 1);
+    k = 0;
     while (push_swap.a[k])
     {
-        printf("%s\n", push_swap.a[k]);
+        ft_putendl_fd(push_swap.a[k], 1);
         k++;
     }
-    puts("----------------------------this is b-----------------------------------");
     k = 0;
-    while (push_swap.b[k])
-    {
-        printf("%s\n", push_swap.b[k]);
-        k++;
-    }
-    puts("----------------------------this is b after pp-----------------------------------");
-    k = 0;
+    puts("--------------------------------------------------------------");
     while (push_swap.a[k])
     {
-        printf("%s\n", push_swap.a[k]);
+        ft_putendl_fd(push_swap.a[k], 1);
+        k++;
+    }
+    k = 0;
+    puts("--------------------------------------------------------------");
+    while (push_swap.b&&push_swap.b[k])
+    {
+        ft_putendl_fd(push_swap.b[k], 1);
         k++;
     }
     return (0);

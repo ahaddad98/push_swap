@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/29 00:25:06 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/29 11:09:17 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,31 @@ int		ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void        swap(char **tab, t_push_swap *push_swap)
+void        swap_a(char **tab, t_push_swap *push_swap)
 {
     char *p;
 
-	if (count_line(tab) <= 1)
+	if (count_line(push_swap->a) <= 1)
+	{
+		ft_putnbr_fd(count_line(push_swap->a), 1);
+		push_swap->checker = 1;
+		return ;
+	}
+    p = ft_strdup(push_swap->a[0]);
+    push_swap->a[0] = ft_strdup(push_swap->a[1]);
+    push_swap->a[1] = ft_strdup(p);
+}
+
+void        swap_b(char **tab, t_push_swap *push_swap)
+{
+    char *p;
+
+	if (count_line(push_swap->b) <= 1)
 	{
 		push_swap->checker = 1;
 		return ;
 	}
-    p = ft_strdup(tab[0]);
-    tab[0] = ft_strdup(tab[1]);
-    tab[1] = ft_strdup(p);
+    p = ft_strdup(push_swap->b[0]);
+    push_swap->b[0] = ft_strdup(push_swap->b[1]);
+    push_swap->b[1] = ft_strdup(p);
 }
