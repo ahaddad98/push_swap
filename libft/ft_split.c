@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/07 16:44:43 by ahaddad           #+#    #+#             */
-/*   Updated: 2019/11/08 13:00:16 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/03/29 23:20:43 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,14 +86,10 @@ static char		*alloc(char **tab, char *src, char c)
 
 char			**ft_split(char const *s, char c)
 {
-	int			i;
 	int			j;
-	int			o;
 	char		**tab;
 	char		*str;
 
-	o = 0;
-	i = 0;
 	j = 0;
 	if (!s)
 		return (NULL);

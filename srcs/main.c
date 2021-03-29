@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/29 16:19:21 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/03/29 23:40:45 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -144,9 +144,7 @@ int main(int ac, char **av)
             swap_b(push_swap.a, &push_swap);
         }
         if (!ft_strcmp(line, "pa\n"))
-        {
-            push_swap.a = push_a(&push_swap);
-        }
+            push_a(&push_swap);
         if (!ft_strcmp(line, "pb\n"))
             push_b(&push_swap);
         if (!ft_strcmp(line, "ra\n"))
@@ -173,20 +171,14 @@ int main(int ac, char **av)
             break ;
     }
     if (!push_swap.b)
-        push_swap.checker = 0;
-    if (push_swap.checker == 1)
+        ft_putendl_fd("KO", 1);
+    else if (push_swap.checker == 1)
         ft_putendl_fd("KO", 1);
     else
         ft_putendl_fd("OK", 1);
     k = 0;
-    while (push_swap.a[k])
-    {
-        ft_putendl_fd(push_swap.a[k], 1);
-        k++;
-    }
-    k = 0;
     puts("--------------------------------------------------------------");
-    while (push_swap.a[k])
+    while (push_swap.a && push_swap.a[k])
     {
         ft_putendl_fd(push_swap.a[k], 1);
         k++;
