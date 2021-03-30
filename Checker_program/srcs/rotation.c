@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   rotation.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 23:36:48 by amine             #+#    #+#             */
-/*   Updated: 2021/03/29 01:15:14 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/30 12:03:11 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 void    rotate(char **a, t_push_swap *push_swap)
 {

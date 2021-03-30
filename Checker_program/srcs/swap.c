@@ -6,11 +6,11 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/29 11:09:17 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/03/30 12:04:08 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/push_swap.h"
+#include "../../includes/push_swap.h"
 
 int		ft_strcmp(const char *s1, const char *s2)
 {

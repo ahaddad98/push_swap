@@ -3,17 +3,20 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amine <amine@student.42.fr>                +#+  +:+       +#+         #
+#    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/03/28 23:40:24 by amine            ###   ########.fr        #
+#    Updated: 2021/03/30 14:14:42 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME= push_swap
-SRC_PATH= srcs
+NAME= checker
+NAME1= push_swap
+SRC_PATH1= ./push_swap_program/sources
+SRC_PATH= ./Checker_program/srcs
 HDR_PATH= includes
-OBJ_PATH= obj
+OBJ_PATH= ./Checker_program/obj
+OBJ_PATH1= ./push_swap_program/obj
 LIB_PATH= libft
 
 SRC_NAME=swap.c\
@@ -22,13 +25,20 @@ SRC_NAME=swap.c\
 		rotation.c\
 		
 
+SRC_NAME1=main.c\
+
 HDR_NAME=push_swap.h
 
 OBJ_NAME= $(SRC_NAME:.c=.o)
+OBJ_NAME1= $(SRC_NAME1:.c=.o)
 
 OBJ= $(addprefix $(OBJ_PATH)/,$(OBJ_NAME))
 SRC= $(addprefix $(SRC_PATH)/,$(SRC_NAME))
 HDR= $(addprefix $(HDR_PATH)/,$(HDR_NAME))
+
+OBJ1= $(addprefix $(OBJ_PATH1)/,$(OBJ_NAME1))
+SRC1= $(addprefix $(SRC_PATH1)/,$(SRC_NAME1))
+HDR1= $(addprefix $(HDR_PATH)/,$(HDR_NAME))
 
 LIB= libft.a
 # FLAGS= -Wall -Wextra -Werror
@@ -37,11 +47,15 @@ H_FLAG= -I $(HDR_PATH)
 
 COMP= gcc
 
-all: lib  $(NAME)
+all: lib  $(NAME) $(NAME1)
 
 $(NAME) : $(LIB_PATH)/$(LIB) $(OBJ)
-		@rm -rf push_swap
+		@rm -rf $(NAME)
 		@$(COMP) -g $(H_FLAG) $(OBJ) $(LLIB_FLAG) -o $@
+		@echo " Made by : \033[1;91mAhaddad\033[m"
+$(NAME1) : $(LIB_PATH)/$(LIB) $(OBJ1)
+		@rm -rf $(NAME1)
+		@$(COMP) -g $(H_FLAG) $(OBJ1) $(LLIB_FLAG) -o $@
 		@echo " Made by : \033[1;91mAhaddad\033[m"
 
 lib:
@@ -50,14 +64,22 @@ lib:
 $(OBJ_PATH)/%.o:  $(SRC_PATH)/%.c $(HDR)
 			@mkdir -p $(OBJ_PATH) 
 			@$(COMP) -g $(FLAGS) $(H_FLAG) -g -o $@ -c $<
+$(OBJ_PATH1)/%.o:  $(SRC_PATH1)/%.c $(HDR)
+			@mkdir -p $(OBJ_PATH1) 
+			@$(COMP) -g $(FLAGS) $(H_FLAG) -g -o $@ -c $<
 
 clean:
 		@rm -rf $(OBJ_PATH)
+		@rm -rf $(OBJ_PATH1)
 		@make clean -C $(LIB_PATH)
+		# @make clean -C $(LIB_PATH)
 
 fclean: clean
 		@rm -rf $(NAME)
 		@make fclean -C $(LIB_PATH)
+		@rm -rf $(NAME1)
 		@echo "all objects are deleted." 
+		# @make fclean -C $(LIB_PATH)
+		# @echo "all objects are deleted." 
 
 re : fclean all
