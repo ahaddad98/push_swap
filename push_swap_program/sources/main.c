@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/31 14:21:09 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/01 01:42:15 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,28 @@ void        get_mediane(t_push_swap *push_swap, int len)
     }
 }
 
+void        use_mediane(t_push_swap *push_swap, int len)
+{
+    int i = 0;
+    int j = 0;
+
+    get_mediane(push_swap, len);
+    if (len >= 2)
+    {
+        while (i < len)
+        {
+            if (push_swap->cast_a[i] <= push_swap->mediane)
+            {
+                puts("pb");
+                j++;
+            }
+            else if (i != len - 1)
+                puts("ra");
+            i++;
+        }
+    }
+}
+
 int main(int ac, char **av)
 {
     t_push_swap push_swap;
@@ -102,9 +124,6 @@ int main(int ac, char **av)
     push_swap.checker = 0;
     int len = 0;
     len = count_line(push_swap.a);
-    if (len >= 2)
-    {
-        get_mediane(&push_swap, len);
-    }
+    use_mediane(&push_swap, len);
     return (0);
 }

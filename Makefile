@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
+#    By: amine <amine@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/03/30 14:14:42 by ahaddad          ###   ########.fr        #
+#    Updated: 2021/04/01 00:34:03 by amine            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,6 @@ all: lib  $(NAME) $(NAME1)
 $(NAME) : $(LIB_PATH)/$(LIB) $(OBJ)
 		@rm -rf $(NAME)
 		@$(COMP) -g $(H_FLAG) $(OBJ) $(LLIB_FLAG) -o $@
-		@echo " Made by : \033[1;91mAhaddad\033[m"
 $(NAME1) : $(LIB_PATH)/$(LIB) $(OBJ1)
 		@rm -rf $(NAME1)
 		@$(COMP) -g $(H_FLAG) $(OBJ1) $(LLIB_FLAG) -o $@
@@ -72,14 +71,11 @@ clean:
 		@rm -rf $(OBJ_PATH)
 		@rm -rf $(OBJ_PATH1)
 		@make clean -C $(LIB_PATH)
-		# @make clean -C $(LIB_PATH)
 
 fclean: clean
 		@rm -rf $(NAME)
 		@make fclean -C $(LIB_PATH)
 		@rm -rf $(NAME1)
-		@echo "all objects are deleted." 
-		# @make fclean -C $(LIB_PATH)
-		# @echo "all objects are deleted." 
+		@echo "all objects are deleted."  
 
 re : fclean all
