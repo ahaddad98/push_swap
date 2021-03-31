@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/03/29 23:30:37 by amine            ###   ########.fr       */
+/*   Updated: 2021/03/31 14:07:36 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,9 @@ typedef struct s_push_swap
 {
     char        **a;
     char        **b;
+    int         *cast_a;
     int         checker;
+    long long int         mediane;
 }           t_push_swap;
 
 void        swap_a(char **ab, t_push_swap *push_swap);
@@ -36,4 +38,6 @@ void        swap_b(char **tab, t_push_swap *push_swap);
 void		ft_free_2dem_arr(void ***arr);
 void		ft_free_arr(void **array);
 void        push_b_2(t_push_swap *push_swap);
+// void        convert_tab(t_push_swap *push_swapm, int len);
+
 #endif
