@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amine <amine@student.42.fr>                +#+  +:+       +#+         #
+#    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/04/01 00:34:03 by amine            ###   ########.fr        #
+#    Updated: 2021/04/07 11:08:33 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ SRC_NAME=swap.c\
 		
 
 SRC_NAME1=main.c\
+		push.c\
+		swap.c\
+		rotation.c\
 
 HDR_NAME=push_swap.h
 
