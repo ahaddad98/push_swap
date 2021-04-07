@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/07 15:35:54 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/07 17:35:25 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ void        use_mediane(t_push_swap *push_swap, int len)
         {
             // if (i != len - 1)
             //     convert_tab(push_swap);
-            if (push_swap->cast_a[i] >= push_swap->mediane)
+            if (push_swap->cast_a[i] <= push_swap->mediane)
             {
                 // printf("|%d|\n", push_swap->cast_a[i]);
                 push_b(push_swap);
@@ -156,6 +156,18 @@ void        use_mediane(t_push_swap *push_swap, int len)
     if (len > 3)
     {
         use_mediane(push_swap, len);
+        if (len == 2)
+        {
+            if (push_swap->cast_a[0] > push_swap->cast_a[1])
+            {
+                swap_a(push_swap->a, push_swap);
+                puts("sa");
+            } 
+        }
+        else if (len == 3)
+        {
+            
+        }
     }
 }
 
