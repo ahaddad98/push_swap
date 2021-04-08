@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/08 14:25:08 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/08 17:25:18 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,24 +147,33 @@ void        use_mediane(t_push_swap *push_swap, int len)
         while (i < (len / 3))
         {
             k = 0;
-            puts("***********************");
+            j = 0;
             while (push_swap->a && push_swap->a[0] && check_under_pivot(push_swap->a,push_swap->med[i]))
             {
-                // printf("{%s}\n",push_swap->a[k]);
-                if (ft_atoi(push_swap->a[k]) <  push_swap->med[i])
+                if (ft_atoi(push_swap->a[k]) < push_swap->med[i])
                 {
                     push_b(push_swap);
                     puts("pb");
-                    // break ;
+                    j++;
                 }
                 else
                 {
                     rotate(push_swap->a, push_swap);
                     puts("ra");
                 }
-                // k++;
             }
-            puts("***********************");
+            if (j == 2)
+            {
+                if (push_swap->b)
+            }
+            else if (j == 3)
+            {
+                puts("HERE IS 3");
+            }
+            else if (j == 1)
+            {
+                puts("HERE IS 1");
+            }
             i++;
         }
     }
