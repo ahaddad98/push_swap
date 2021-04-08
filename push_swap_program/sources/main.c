@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/07 17:35:25 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/08 14:25:08 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ void        tri_insert(t_push_swap *push_swap, int len)
     tmp1 = malloc(sizeof(int ) * len);
     while (i < len)
     {
-        tmp1[i] = push_swap->cast_a[i];
+        tmp1[i] = ft_atoi(push_swap->a[i]);
         i++;
     }
     i = 0;
@@ -96,28 +96,43 @@ void        tri_insert(t_push_swap *push_swap, int len)
         i++;
     }
     push_swap->mediane = 9223372036854775807;
-    if ((len % 2) != 0)
-        push_swap->mediane = tmp1[(len)/2];
-    else
-        push_swap->mediane = tmp1[(len-1)/2];
+    push_swap->med = malloc(sizeof(int) * push_swap->nbr_of_med);
+    i = 2;
+    int k = 0;
+    while ( i  < len)
+    {
+        push_swap->med[k] = tmp1[i];
+        k++;
+        i = i + 3;
+    }
+    i = 0;
+    puts("====================================================");
+    while (i < (len / 3))
+    {
+        printf("|%d|\n", push_swap->med[i]);
+        i++;
+    }
+    puts("====================================================");
 }
 
 void        get_mediane(t_push_swap *push_swap, int len)
 {
     int i = 0;
-    convert_tab(push_swap);
+    // convert_tab(push_swap);
     tri_insert(push_swap, len);
-    // push_swap->mediane = 9223372036854775807;
-    // if ((len % 2) != 0)
-    //     push_swap->mediane = push_swap->cast_a[(len)/2];
-    // else
-    //     push_swap->mediane = push_swap->cast_a[(len-1)/2];
-    // printf("{%lld}\n", push_swap->mediane);
-    // while (i < len)
-    // {
-    //     printf("%d\n", push_swap->cast_a[i]);
-    //     i++;
-    // }
+}
+
+int check_under_pivot(char **ag,int pivot)
+{
+    int i;
+    i = 0;
+    while (ag[i])
+    {
+        if(ft_atoi(ag[i])< pivot)
+            return (1);
+        i++;
+    }
+    return (0);
 }
 
 void        use_mediane(t_push_swap *push_swap, int len)
@@ -129,46 +144,46 @@ void        use_mediane(t_push_swap *push_swap, int len)
     get_mediane(push_swap, len);
     if (len >= 2)
     {
-        while (i < len)
+        while (i < (len / 3))
         {
-            // if (i != len - 1)
-            //     convert_tab(push_swap);
-            if (push_swap->cast_a[i] <= push_swap->mediane)
+            k = 0;
+            puts("***********************");
+            while (push_swap->a && push_swap->a[0] && check_under_pivot(push_swap->a,push_swap->med[i]))
             {
-                // printf("|%d|\n", push_swap->cast_a[i]);
-                push_b(push_swap);
-                puts("pb");
-                j++;
+                // printf("{%s}\n",push_swap->a[k]);
+                if (ft_atoi(push_swap->a[k]) <  push_swap->med[i])
+                {
+                    push_b(push_swap);
+                    puts("pb");
+                    // break ;
+                }
+                else
+                {
+                    rotate(push_swap->a, push_swap);
+                    puts("ra");
+                }
+                // k++;
             }
-            // else
-            //     break ;
-            // if (i != len - 1)
-            //     free(push_swap->cast_a);
-            else if (i != len - 1)
-            {
-                puts("ra");
-                rotate(push_swap->a, push_swap);
-            }
+            puts("***********************");
             i++;
         }
     }
-    len = count_line(push_swap->a);
-    if (len > 3)
-    {
-        use_mediane(push_swap, len);
-        if (len == 2)
-        {
-            if (push_swap->cast_a[0] > push_swap->cast_a[1])
-            {
-                swap_a(push_swap->a, push_swap);
-                puts("sa");
-            } 
-        }
-        else if (len == 3)
-        {
-            
-        }
-    }
+    // len = count_line(push_swap->a);
+    // if (len > 3)
+    // {
+    //     use_mediane(push_swap, len);
+    //     if (len == 2)
+    //     {
+    //         if (push_swap->cast_a[0] > push_swap->cast_a[1])
+    //         {
+    //             swap_a(push_swap->a, push_swap);
+    //             puts("sa");
+    //         } 
+    //     }
+    //     else if (len == 3)
+    //     {
+    //     }
+    // }
 }
 
 int main(int ac, char **av)
@@ -191,24 +206,35 @@ int main(int ac, char **av)
     push_swap.checker = 0;
     int len = 0;
     len = count_line(push_swap.a);
+    push_swap.nbr_of_med = -1;
+    push_swap.nbr_of_med = len / 2;
+    // printf("{{%d}}}\n", 10 / 3);
     use_mediane(&push_swap, len);
-        k = 0;
+    k = 0;
     puts("-----------------HERE IS : A--------------------------");
     if (count_line(push_swap.a) == 3)
         puts("HERE WE GO!");
+    // rotate(push_swap.a, &push_swap);
+    // rotate(push_swap.a, &push_swap);
+    // push_b(&push_swap);
+    // push_b(&push_swap);
+    // push_b(&push_swap);
+    // push_b(&push_swap);
     while (push_swap.a && push_swap.a[k])
     {
         ft_putendl_fd(push_swap.a[k], 1);
         k++;
     }
-    k = 0;
-    puts("-----------------HERE iS : B--------------------------");
-    while (push_swap.b&&push_swap.b[k])
+    i = 0;
+    puts("-----------------HERE IS : B--------------------------");
+    while (push_swap.b && push_swap.b[i])
     {
-        ft_putendl_fd(push_swap.b[k], 1);
-        k++;
+        ft_putendl_fd(push_swap.b[i], 1);
+        i++;
     }
-    ft_free_2dem_arr((void ***)&push_swap.a);
-    ft_free_2dem_arr((void ***)&push_swap.b);
+    if (k)
+        ft_free_2dem_arr((void ***)&push_swap.a);
+    if (i)
+        ft_free_2dem_arr((void ***)&push_swap.b);
     return (0);
 }
