@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/08 17:25:18 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/08 23:38:33 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,11 +103,11 @@ void        tri_insert(t_push_swap *push_swap, int len)
     {
         push_swap->med[k] = tmp1[i];
         k++;
-        i = i + 3;
+        i = i + 2;
     }
     i = 0;
     puts("====================================================");
-    while (i < (len / 3))
+    while (i < (len / 2))
     {
         printf("|%d|\n", push_swap->med[i]);
         i++;
@@ -140,11 +140,11 @@ void        use_mediane(t_push_swap *push_swap, int len)
     int i = 0;
     int j = 0;
     int k = 0;
-
+    int len_b = 0;
     get_mediane(push_swap, len);
     if (len >= 2)
     {
-        while (i < (len / 3))
+        while (i < (len / 2))
         {
             k = 0;
             j = 0;
@@ -164,35 +164,54 @@ void        use_mediane(t_push_swap *push_swap, int len)
             }
             if (j == 2)
             {
-                if (push_swap->b)
+                if (push_swap->b[0] > push_swap->b[1]);
+                {
+                    swap_b(push_swap->b, push_swap);
+                    puts("sb");
+                }
             }
             else if (j == 3)
             {
-                puts("HERE IS 3");
+                // if ((push_swap->b[0] < push_swap->b[1]) && (push_swap->b[0] < push_swap->b[2]) && (push_swap->b[1] > push_swap->b[2]))
+                // {
+                //     rotate(push_swap->b, push_swap);
+                //     puts("rb");
+                // }
+                // if ((push_swap->b[0] > push_swap->b[1]) && (push_swap->b[0] < push_swap->b[2]) && (push_swap->b[1] < push_swap->b[2]))
+                // {
+                //     rot_rot(push_swap->b, push_swap);
+                //     puts("rrb");
+                // }
+                // if ((push_swap->b[0] < push_swap->b[1]) && (push_swap->b[0] > push_swap->b[2]) && (push_swap->b[1] > push_swap->b[2]))
+                // {
+                //     swap_b(push_swap->b, push_swap);
+                //     puts("sb");
+                // }
+                // if ((push_swap->b[0] > push_swap->b[1]) && (push_swap->b[0] > push_swap->b[2]) && (push_swap->b[1] < push_swap->b[2]))
+                // {
+                //     rot_rot(push_swap->b, push_swap);
+                //     puts("rrb");
+                //     swap_b(push_swap->b, push_swap);
+                //     puts("sa");
+                    
+                // }
+                // if ((push_swap->b[0] < push_swap->b[1]) && (push_swap->b[0] < push_swap->b[2]) && (push_swap->b[1] < push_swap->b[2]))
+                // {
+                //     rot_rot(push_swap->b, push_swap);
+                //     puts("rrb");
+                //     rot_rot(push_swap->b, push_swap);
+                //     puts("rrb");
+                //     swap_b(push_swap->b, push_swap);
+                //     puts("sa");
+                // }
             }
-            else if (j == 1)
+            else
             {
                 puts("HERE IS 1");
             }
             i++;
         }
     }
-    // len = count_line(push_swap->a);
-    // if (len > 3)
-    // {
-    //     use_mediane(push_swap, len);
-    //     if (len == 2)
-    //     {
-    //         if (push_swap->cast_a[0] > push_swap->cast_a[1])
-    //         {
-    //             swap_a(push_swap->a, push_swap);
-    //             puts("sa");
-    //         } 
-    //     }
-    //     else if (len == 3)
-    //     {
-    //     }
-    // }
 }
 
 int main(int ac, char **av)
@@ -221,14 +240,6 @@ int main(int ac, char **av)
     use_mediane(&push_swap, len);
     k = 0;
     puts("-----------------HERE IS : A--------------------------");
-    if (count_line(push_swap.a) == 3)
-        puts("HERE WE GO!");
-    // rotate(push_swap.a, &push_swap);
-    // rotate(push_swap.a, &push_swap);
-    // push_b(&push_swap);
-    // push_b(&push_swap);
-    // push_b(&push_swap);
-    // push_b(&push_swap);
     while (push_swap.a && push_swap.a[k])
     {
         ft_putendl_fd(push_swap.a[k], 1);
