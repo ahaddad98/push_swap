@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/09 02:34:22 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/09 17:23:25 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,25 +46,6 @@ int				count_line(char **env)
 	return (i);
 }
 
-
-void         convert_tab(t_push_swap *push_swap)
-{
-    int len;
-    len = count_line(push_swap->a);
-    push_swap->cast_a = malloc(sizeof(int) * len);
-    int i = 0;
-    int k = 0;
-    // puts("****************************************************");
-    while (push_swap->a[i])
-    {
-        // printf("{%d}\n",ft_atoi(push_swap->a[i]));
-        push_swap->cast_a[k] = ft_atoi(push_swap->a[i]);
-        k++;
-        i++;
-    }
-    // puts("****************************************************");
-}
-
 void        tri_insert(t_push_swap *push_swap, int len)
 {
     int i;
@@ -99,20 +80,20 @@ void        tri_insert(t_push_swap *push_swap, int len)
     push_swap->med = malloc(sizeof(int) * ((len / 2)) - 1);
     i = 2;
     int k = 0;
-    while ( i  < len)
+    while ( i  < len - 1)
     {
         push_swap->med[k] = tmp1[i];
         k++;
         i = i + 2;
     }
     i = 0;
-    puts("====================================================");
-    while (i < (len / 2))
-    {
-        printf("|%d|\n", push_swap->med[i]);
-        i++;
-    }
-    puts("====================================================");
+    // puts("====================================================");
+    // while (i < (len / 2))
+    // {
+    //     printf("|%d|\n", push_swap->med[i]);
+    //     i++;
+    // }
+    // puts("====================================================");
 }
 
 void        get_mediane(t_push_swap *push_swap, int len)
@@ -135,12 +116,28 @@ int check_under_pivot(char **ag,int pivot)
     return (0);
 }
 
+int         get_index(t_push_swap *push_swap, int med)
+{
+    int i = 0;
+
+    while (push_swap->a[i])
+    {
+        if (ft_atoi(push_swap->a[i]) <  med)
+        {
+            return (i);
+        }
+        i++;
+    }
+    return (-1);
+}
+
 void        use_mediane(t_push_swap *push_swap, int len)
 {
     int i = 0;
     int j = 0;
     int k = 0;
     int len_b = 0;
+    int len_a = 0;
     get_mediane(push_swap, len);
     push_swap->nbr_of_inst = 0;
     if (len >= 2)
@@ -151,12 +148,25 @@ void        use_mediane(t_push_swap *push_swap, int len)
             j = 0;
             while (push_swap->a && push_swap->a[0] && check_under_pivot(push_swap->a, push_swap->med[i]))
             {
-                if (ft_atoi(push_swap->a[k]) < push_swap->med[i])
+                if (ft_atoi(push_swap->a[k]) <  push_swap->med[i])
                 {
                     push_b(push_swap);
                     puts("pb");
                     push_swap->nbr_of_inst++;
                     j++;
+                }
+                len_a = count_line(push_swap->a) / 2;
+                if (len_a >= get_index(push_swap, push_swap->med[i]))
+                {
+                    rotate(push_swap->a, push_swap);
+                    puts("ra");
+                    push_swap->nbr_of_inst++;
+                }
+                if (len_a < get_index(push_swap, push_swap->med[i]))
+                {
+                    rot_rot(push_swap->a, push_swap);
+                    puts("rra");
+                    push_swap->nbr_of_inst++;
                 }
                 // else if (push_swap->a[1] && (ft_atoi(push_swap->a[1]) < push_swap->med[i]))
                 // {
@@ -167,17 +177,16 @@ void        use_mediane(t_push_swap *push_swap, int len)
                 //         push_swap->nbr_of_inst++;
                 //     // }
                 // }
-                else
-                {
-                    rotate(push_swap->a, push_swap);
-                    puts("ra");
-                    push_swap->nbr_of_inst++;
-                }
+                // else /*if (ft_atoi(push_swap->a[k]) >= push_swap->med[i])*/
+                // {
+                //     rotate(push_swap->a, push_swap);
+                //     puts("ra");
+                //     push_swap->nbr_of_inst++;
+                // }
             }
             if (j == 2)
             {
-                puts("amine haddad");
-                if (push_swap->b[0] > push_swap->b[1]);
+                if (ft_atoi(push_swap->b[0]) < ft_atoi(push_swap->b[1]))
                 {
                     swap_b(push_swap->b, push_swap);
                     puts("sb");
@@ -218,10 +227,10 @@ void        use_mediane(t_push_swap *push_swap, int len)
                 //     swap_b(push_swap->b, push_swap);
                 //     puts("sa");
                 // }
+                puts("HERE IS 3");
             }
             else
             {
-                puts("HERE IS 1");
             }
             i++;
         }
@@ -253,21 +262,21 @@ int main(int ac, char **av)
     push_swap.nbr_of_med = len / 2;
     // printf("{{%d}}}\n", 10 / 3);
     use_mediane(&push_swap, len);
-    k = 0;
-    puts("-----------------HERE IS : A--------------------------");
-    while (push_swap.a && push_swap.a[k])
-    {
-        ft_putendl_fd(push_swap.a[k], 1);
-        k++;
-    }
-    i = 0;
-    puts("-----------------HERE IS : B--------------------------");
-    while (push_swap.b && push_swap.b[i])
-    {
-        ft_putendl_fd(push_swap.b[i], 1);
-        i++;
-    }
-    printf("{|%d|}", push_swap.nbr_of_inst);
+    // k = 0;
+    // puts("-----------------HERE IS : A--------------------------");
+    // while (push_swap.a && push_swap.a[k])
+    // {
+    //     ft_putendl_fd(push_swap.a[k], 1);
+    //     k++;
+    // }
+    // i = 0;
+    // puts("-----------------HERE IS : B--------------------------");
+    // while (push_swap.b && push_swap.b[i])
+    // {
+    //     ft_putendl_fd(push_swap.b[i], 1);
+    //     i++;
+    // }
+    // printf("{|%d|}", push_swap.nbr_of_inst);
     if (k)
         ft_free_2dem_arr((void ***)&push_swap.a);
     if (i)
