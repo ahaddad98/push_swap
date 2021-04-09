@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/08 11:09:59 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/09 00:06:21 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_push_swap
     int         checker;
     int         *med;
     int         nbr_of_med;
+    int         nbr_of_inst;
     long long int         mediane;
 }           t_push_swap;
 

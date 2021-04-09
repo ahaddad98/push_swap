@@ -6,13 +6,13 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/08 23:38:33 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/09 02:34:22 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void		ft_free_arr(void **array)
+void  ft_free_arr(void **array)
 {
 	if (*array)
 		free(*array);
@@ -96,7 +96,7 @@ void        tri_insert(t_push_swap *push_swap, int len)
         i++;
     }
     push_swap->mediane = 9223372036854775807;
-    push_swap->med = malloc(sizeof(int) * push_swap->nbr_of_med);
+    push_swap->med = malloc(sizeof(int) * ((len / 2)) - 1);
     i = 2;
     int k = 0;
     while ( i  < len)
@@ -142,32 +142,46 @@ void        use_mediane(t_push_swap *push_swap, int len)
     int k = 0;
     int len_b = 0;
     get_mediane(push_swap, len);
+    push_swap->nbr_of_inst = 0;
     if (len >= 2)
     {
         while (i < (len / 2))
         {
             k = 0;
             j = 0;
-            while (push_swap->a && push_swap->a[0] && check_under_pivot(push_swap->a,push_swap->med[i]))
+            while (push_swap->a && push_swap->a[0] && check_under_pivot(push_swap->a, push_swap->med[i]))
             {
                 if (ft_atoi(push_swap->a[k]) < push_swap->med[i])
                 {
                     push_b(push_swap);
                     puts("pb");
+                    push_swap->nbr_of_inst++;
                     j++;
                 }
+                // else if (push_swap->a[1] && (ft_atoi(push_swap->a[1]) < push_swap->med[i]))
+                // {
+                //     puts("amine");
+                //     // if (ft_atoi(push_swap->a[len- 1]) < push_swap->med[i])
+                //     // {
+                //         rotate(push_swap->a, push_swap);
+                //         push_swap->nbr_of_inst++;
+                //     // }
+                // }
                 else
                 {
                     rotate(push_swap->a, push_swap);
                     puts("ra");
+                    push_swap->nbr_of_inst++;
                 }
             }
             if (j == 2)
             {
+                puts("amine haddad");
                 if (push_swap->b[0] > push_swap->b[1]);
                 {
                     swap_b(push_swap->b, push_swap);
                     puts("sb");
+                    push_swap->nbr_of_inst++;
                 }
             }
             else if (j == 3)
@@ -212,6 +226,7 @@ void        use_mediane(t_push_swap *push_swap, int len)
             i++;
         }
     }
+    ft_free_arr((void **)&push_swap->med);
 }
 
 int main(int ac, char **av)
@@ -252,9 +267,12 @@ int main(int ac, char **av)
         ft_putendl_fd(push_swap.b[i], 1);
         i++;
     }
+    printf("{|%d|}", push_swap.nbr_of_inst);
     if (k)
         ft_free_2dem_arr((void ***)&push_swap.a);
     if (i)
         ft_free_2dem_arr((void ***)&push_swap.b);
     return (0);
 }
+
+//97 24 31 84 3 4 90 96 52 13 46 89 71 64 22 76 28 55 28 19 50 63 81 14 87 100 38 88 89 50 6 29 17 47 32 91 17 56 64 67 74 58 49 35 28 60 9 87 20 22 90 95 79 86 95 93 12 75 32 14 72 34 38 87 73 18 52 3 10 17 9 96 92 14 80 71 15 46 70 78 2 31 97 79 11 7 35 24 29 57 5 20 89 14 60 75 96 7 69 29
