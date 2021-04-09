@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/09 18:01:22 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/09 18:04:20 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,7 +161,7 @@ void        use_mediane(t_push_swap *push_swap, int len)
                     rotate(push_swap->a, push_swap);
                     puts("ra");
                     push_swap->nbr_of_inst++;
-                }
+                }       
                 if (len_a < get_index(push_swap, push_swap->med[i]))
                 {
                     rot_rot(push_swap->a, push_swap);
