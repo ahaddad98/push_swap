@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/09 00:06:21 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/10 00:48:03 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_push_swap
     char        **b;
     int         *cast_a;
     int         checker;
-    int         *med;
+    char        **med;
     int         nbr_of_med;
     int         nbr_of_inst;
     long long int         mediane;
