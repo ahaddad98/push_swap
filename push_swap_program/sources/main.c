@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/10 16:09:35 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/11 12:41:20 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,14 +74,6 @@ void tri_insert(t_push_swap *push_swap, int len)
 
     i = 0;
     tmp1 = ft_strdup_2d(push_swap->a);
-    // tmp1 = malloc(sizeof(int ) * (len + 2));
-    // ft_bzero(tmp1, (len + 2));
-    // while (i < len)
-    // {
-    //     tmp1[i] = ft_strdup(push_swap->a[i]);
-    //     i++;
-    // }
-    // tmp1[i] = NULL;
     i = 0;
     while (i < len)
     {
@@ -100,38 +92,36 @@ void tri_insert(t_push_swap *push_swap, int len)
         i++;
     }
     push_swap->mediane = 9223372036854775807;
-    // i = 0;
-    // puts("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-    // while (tmp1[i])
-    // {
-    //     puts(tmp1[i]);
-    //     i++;
-    // }
-    // puts("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
-    push_swap->med = malloc(sizeof(char *) * ((len / 5)));
-    i = len / 5;
-    int k = 0;
-    while (i < len)
+    if (len <= 100)
     {
-        push_swap->med[k] = ft_strdup(tmp1[i]);
-        k++;
-        i = i + (len / 5);
+        push_swap->med = malloc(sizeof(char *) * ((len / 5)));
+        i = len / 5;
+        int k = 0;
+        while (i < len)
+        {
+            push_swap->med[k] = ft_strdup(tmp1[i]);
+            k++;
+            i = i + (len / 5);
+        }
+        push_swap->med[k] = NULL;
     }
-    push_swap->med[k] = NULL;
-    //     i = 0;
-    //     puts("====================================================");
-    //     while (i < count_line(push_swap->med))
-    //     {
-    //         printf("|%s|\n", push_swap->med[i]);
-    //         i++;
-    //     }
-    //     puts("====================================================");
+    else if (len > 100)
+    {
+        push_swap->med = malloc(sizeof(char *) * ((len / 8)));
+        i = len / 8;
+        int k = 0;
+        while (i < len)
+        {
+            push_swap->med[k] = ft_strdup(tmp1[i]);
+            k++;
+            i = i + (len / 8);
+        }
+        push_swap->med[k] = NULL;
+    }
 }
 
 void get_mediane(t_push_swap *push_swap, int len)
 {
-    int i = 0;
-    // convert_tab(push_swap);
     tri_insert(push_swap, len);
 }
 
@@ -176,6 +166,22 @@ int get_index(t_push_swap *push_swap, int med)
     }
     return (-1);
 }
+
+int get_index2(t_push_swap *push_swap, int med)
+{
+    int i = 0;
+
+    while (push_swap->a[i])
+    {
+        if (ft_atoi(push_swap->a[i]) > med)
+        {
+            return (i);
+        }
+        i++;
+    }
+    return (-1);
+}
+
 int get_index1(t_push_swap *push_swap, int med)
 {
     int i = 0;
@@ -205,8 +211,23 @@ int get_max(t_push_swap *push_swap)
         }
         i++;
     }
-    // printf("%%%%%%%%%%%%{%d}%%%%%%%%%%%%\n", push_swap->max_in_arr);
-    // puts("laloli");
+    return (push_swap->max_in_arr);
+}
+
+int get_min(t_push_swap *push_swap)
+{
+    int i = 1;
+    push_swap->max_index = 0;
+    if (push_swap->a && push_swap->a[0])
+        push_swap->max_in_arr = ft_atoi(push_swap->a[0]);
+    while (push_swap->a && push_swap->a[i]) //&& i != 20
+    {
+        if (push_swap->max_in_arr > ft_atoi(push_swap->a[i]))
+        {
+            push_swap->max_in_arr = ft_atoi(push_swap->a[i]);
+        }
+        i++;
+    }
     return (push_swap->max_in_arr);
 }
 
@@ -252,10 +273,35 @@ void use_mediane(t_push_swap *push_swap, int len)
         }
     }
     i = 0;
-    while (i < count_line(push_swap->a))
+    while (push_swap->a && push_swap->a[0])
     {
-        push_b(push_swap);
-        puts("pb");
+        // int min = get_min(push_swap);
+        // printf("{|%d|}\n", min);
+        // {
+        //     len_a = count_line(push_swap->a) / 2;
+        //     while (push_swap->a && ft_atoi(push_swap->a[0]) != min)
+        //     {
+        //         if (len_a >= get_index(push_swap, (min)))
+        //         {
+        //             rotate(push_swap->a, push_swap);
+        //             puts("ra");
+        //             push_swap->nbr_of_inst++;
+        //         }
+        //         else
+        //         {
+        //             rot_rot(push_swap->a, push_swap);
+        //             puts("rra");
+        //             push_swap->nbr_of_inst++;
+        //         }
+        //     }
+        //     if (ft_atoi(push_swap->a[0]) == min)
+        //     {
+                push_b(push_swap);
+                puts("pb");
+                push_swap->nbr_of_inst++;
+        //         min = get_min(push_swap);
+        //     }
+        // }
     }
     i = count_line(push_swap->med) - 1;
     j = 0;
@@ -290,7 +336,7 @@ void use_mediane(t_push_swap *push_swap, int len)
             }
         }
     }
-    // ft_free_arr((void **)&push_swap->med);
+    ft_free_arr((void **)&push_swap->med);
 }
 
 int main(int ac, char **av)
@@ -313,11 +359,7 @@ int main(int ac, char **av)
     push_swap.checker = 0;
     int len = 0;
     len = count_line(push_swap.a);
-    push_swap.nbr_of_med = -1;
-    push_swap.nbr_of_med = len / 2;
-    // printf("{{%d}}}\n", 10 / 3);
     use_mediane(&push_swap, len);
-    // printf("aaamine");
     k = 0;
     // puts("-----------------HERE IS : A--------------------------");
     // while (push_swap.a && push_swap.a[k])
@@ -332,7 +374,7 @@ int main(int ac, char **av)
     //     ft_putendl_fd(push_swap.b[i], 1);
     //     i++;
     // }
-    printf("{|%d|}", push_swap.nbr_of_inst);
+    // printf("{|%d|}", push_swap.nbr_of_inst);
     if (k)
         ft_free_2dem_arr((void ***)&push_swap.a);
     if (i)
