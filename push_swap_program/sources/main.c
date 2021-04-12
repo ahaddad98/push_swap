@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/11 12:41:20 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/12 02:54:27 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,20 @@ void tri_insert(t_push_swap *push_swap, int len)
         i++;
     }
     push_swap->mediane = 9223372036854775807;
-    if (len <= 100)
+    if (len <= 20)
+    {
+        push_swap->med = malloc(sizeof(char *) * ((len / 3)));
+        i = len / 3;
+        int k = 0;
+        while (i < len)
+        {
+            push_swap->med[k] = ft_strdup(tmp1[i]);
+            k++;
+            i = i + (len / 3);
+        }
+        push_swap->med[k] = NULL;
+    }
+    else if (len <= 100)
     {
         push_swap->med = malloc(sizeof(char *) * ((len / 5)));
         i = len / 5;
@@ -107,14 +120,14 @@ void tri_insert(t_push_swap *push_swap, int len)
     }
     else if (len > 100)
     {
-        push_swap->med = malloc(sizeof(char *) * ((len / 8)));
-        i = len / 8;
+        push_swap->med = malloc(sizeof(char *) * ((len / 7)));
+        i = len / 7;
         int k = 0;
         while (i < len)
         {
             push_swap->med[k] = ft_strdup(tmp1[i]);
             k++;
-            i = i + (len / 8);
+            i = i + (len / 7);
         }
         push_swap->med[k] = NULL;
     }
@@ -339,6 +352,41 @@ void use_mediane(t_push_swap *push_swap, int len)
     ft_free_arr((void **)&push_swap->med);
 }
 
+void    algo_3_elem(t_push_swap *push_swap)
+{
+    if ((ft_atoi(push_swap->a[0]) < ft_atoi(push_swap->a[1])) && (ft_atoi(push_swap->a[0]) < ft_atoi(push_swap->a[2])) && (ft_atoi(push_swap->a[1]) > ft_atoi(push_swap->a[2])))
+    {
+        rot_rot(push_swap->a, push_swap);
+        puts("rra");
+        swap_a(push_swap->a, push_swap);
+        puts("sa");
+    }
+    else if ((ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[1])) && (ft_atoi(push_swap->a[0]) < ft_atoi(push_swap->a[2])) && (ft_atoi(push_swap->a[1]) < ft_atoi(push_swap->a[2])))
+    {
+        swap_a(push_swap->a, push_swap);
+        puts("sa");
+    }
+    else if ((ft_atoi(push_swap->a[0]) < ft_atoi(push_swap->a[1])) && (ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[2])) && (ft_atoi(push_swap->a[1]) > ft_atoi(push_swap->a[2])))
+    {
+        rot_rot(push_swap->a, push_swap);
+        puts("rra");
+    }
+    else if ((ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[1])) && (ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[2])) && (ft_atoi(push_swap->a[1]) < ft_atoi(push_swap->a[2])))
+    {
+        rotate(push_swap->a, push_swap);
+        puts("ra");
+    }
+    else if ((ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[1])) && (ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[2])) && (ft_atoi(push_swap->a[1]) > ft_atoi(push_swap->a[2])))
+    {
+        rot_rot(push_swap->a, push_swap);
+        puts("rra");
+        rot_rot(push_swap->a, push_swap);
+        puts("rra");
+        swap_a(push_swap->a, push_swap);
+        puts("sa");
+    }
+}
+
 int main(int ac, char **av)
 {
     t_push_swap push_swap;
@@ -359,7 +407,18 @@ int main(int ac, char **av)
     push_swap.checker = 0;
     int len = 0;
     len = count_line(push_swap.a);
-    use_mediane(&push_swap, len);
+    if (len == 2)
+    {
+        if (ft_atoi(push_swap.a[0]) > ft_atoi(push_swap.a[1]))
+        {
+            swap_a(push_swap.a, &push_swap);
+            puts("sa");
+        }
+    }
+    else if (len == 3)
+        algo_3_elem(&push_swap);
+    else
+        use_mediane(&push_swap, len);
     k = 0;
     // puts("-----------------HERE IS : A--------------------------");
     // while (push_swap.a && push_swap.a[k])
