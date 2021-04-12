@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/12 02:54:27 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/12 02:59:09 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -288,33 +288,33 @@ void use_mediane(t_push_swap *push_swap, int len)
     i = 0;
     while (push_swap->a && push_swap->a[0])
     {
-        // int min = get_min(push_swap);
-        // printf("{|%d|}\n", min);
-        // {
-        //     len_a = count_line(push_swap->a) / 2;
-        //     while (push_swap->a && ft_atoi(push_swap->a[0]) != min)
-        //     {
-        //         if (len_a >= get_index(push_swap, (min)))
-        //         {
-        //             rotate(push_swap->a, push_swap);
-        //             puts("ra");
-        //             push_swap->nbr_of_inst++;
-        //         }
-        //         else
-        //         {
-        //             rot_rot(push_swap->a, push_swap);
-        //             puts("rra");
-        //             push_swap->nbr_of_inst++;
-        //         }
-        //     }
-        //     if (ft_atoi(push_swap->a[0]) == min)
-        //     {
+        int min = get_min(push_swap);
+        printf("{|%d|}\n", min);
+        {
+            len_a = count_line(push_swap->a) / 2;
+            while (push_swap->a && ft_atoi(push_swap->a[0]) != min)
+            {
+                if (len_a >= get_index(push_swap, (min)))
+                {
+                    rotate(push_swap->a, push_swap);
+                    puts("ra");
+                    push_swap->nbr_of_inst++;
+                }
+                else
+                {
+                    rot_rot(push_swap->a, push_swap);
+                    puts("rra");
+                    push_swap->nbr_of_inst++;
+                }
+            }
+            if (ft_atoi(push_swap->a[0]) == min)
+            {
                 push_b(push_swap);
                 puts("pb");
                 push_swap->nbr_of_inst++;
-        //         min = get_min(push_swap);
-        //     }
-        // }
+                min = get_min(push_swap);
+            }
+        }
     }
     i = count_line(push_swap->med) - 1;
     j = 0;
