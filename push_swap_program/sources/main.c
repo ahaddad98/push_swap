@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/12 02:59:09 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/12 15:11:44 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,17 +92,13 @@ void tri_insert(t_push_swap *push_swap, int len)
         i++;
     }
     push_swap->mediane = 9223372036854775807;
-    if (len <= 20)
+    if (len <= 10)
     {
-        push_swap->med = malloc(sizeof(char *) * ((len / 3)));
-        i = len / 3;
+        push_swap->med = malloc(sizeof(char *) * 2);
+        i = len / 2;
         int k = 0;
-        while (i < len)
-        {
-            push_swap->med[k] = ft_strdup(tmp1[i]);
-            k++;
-            i = i + (len / 3);
-        }
+        push_swap->med[k] = ft_strdup(tmp1[i]);
+        k++;
         push_swap->med[k] = NULL;
     }
     else if (len <= 100)
@@ -120,14 +116,14 @@ void tri_insert(t_push_swap *push_swap, int len)
     }
     else if (len > 100)
     {
-        push_swap->med = malloc(sizeof(char *) * ((len / 7)));
-        i = len / 7;
+        push_swap->med = malloc(sizeof(char *) * ((len / 12)));
+        i = len / 12;
         int k = 0;
         while (i < len)
         {
             push_swap->med[k] = ft_strdup(tmp1[i]);
             k++;
-            i = i + (len / 7);
+            i = i + (len / 12);
         }
         push_swap->med[k] = NULL;
     }
@@ -243,7 +239,7 @@ int get_min(t_push_swap *push_swap)
     }
     return (push_swap->max_in_arr);
 }
-
+void    algo_3_elem(t_push_swap *push_swap);
 void use_mediane(t_push_swap *push_swap, int len)
 {
     int i = 0;
@@ -286,66 +282,76 @@ void use_mediane(t_push_swap *push_swap, int len)
         }
     }
     i = 0;
-    while (push_swap->a && push_swap->a[0])
+    if (len <= 12)
     {
-        int min = get_min(push_swap);
-        printf("{|%d|}\n", min);
+        while (push_swap->a && push_swap->a[0] && (count_line(push_swap->a) > 3))
         {
-            len_a = count_line(push_swap->a) / 2;
-            while (push_swap->a && ft_atoi(push_swap->a[0]) != min)
-            {
-                if (len_a >= get_index(push_swap, (min)))
-                {
-                    rotate(push_swap->a, push_swap);
-                    puts("ra");
-                    push_swap->nbr_of_inst++;
-                }
-                else
-                {
-                    rot_rot(push_swap->a, push_swap);
-                    puts("rra");
-                    push_swap->nbr_of_inst++;
-                }
-            }
-            if (ft_atoi(push_swap->a[0]) == min)
-            {
-                push_b(push_swap);
-                puts("pb");
-                push_swap->nbr_of_inst++;
-                min = get_min(push_swap);
-            }
+            push_b(push_swap);
+            puts("pb");
+            push_swap->nbr_of_inst++;
         }
-    }
-    i = count_line(push_swap->med) - 1;
-    j = 0;
-    k = 0;
-    len_b = 0;
-    while (push_swap->b && push_swap->b[0])
-    {
-        int max = get_max(push_swap);
+        i = count_line(push_swap->med) - 1;
+        j = 0;
+        k = 0;
+        len_b = 0;
+        if (count_line(push_swap->a) == 3)
         {
-            len_b = count_line(push_swap->b) / 2;
-            while (push_swap->b && ft_atoi(push_swap->b[0]) != max)
+            algo_3_elem(push_swap);
+        }
+        if (count_line(push_swap->b) == 0)
+        {
+            if (ft_atoi(push_swap->b[0]) <  ft_atoi(push_swap->b[1]))
             {
-                if (len_b >= get_index1(push_swap, (max)))
-                {
-                    rotate(push_swap->b, push_swap);
-                    puts("rb");
-                    push_swap->nbr_of_inst++;
-                }
-                else if (len_b < get_index1(push_swap, (max)))
-                {
-                    rot_rot(push_swap->b, push_swap);
-                    puts("rrb");
-                    push_swap->nbr_of_inst++;
-                }
+                swap_b(push_swap->b, push_swap);
+                puts("sa");
             }
-            if (ft_atoi(push_swap->b[0]) == max)
+            while (push_swap->b && push_swap->b[0])
             {
                 push_a(push_swap);
                 puts("pa");
                 push_swap->nbr_of_inst++;
-                max = get_max(push_swap);
+            }
+        }
+    }
+    else if (len > 12)
+    {
+        while (push_swap->a && push_swap->a[0])
+        {
+            push_b(push_swap);
+            puts("pb");
+            push_swap->nbr_of_inst++;
+        }
+        i = count_line(push_swap->med) - 1;
+        j = 0;
+        k = 0;
+        len_b = 0;
+        while (push_swap->b && push_swap->b[0])
+        {
+            int max = get_max(push_swap);
+            {
+                len_b = count_line(push_swap->b) / 2;
+                while (push_swap->b && ft_atoi(push_swap->b[0]) != max)
+                {
+                    if (len_b >= get_index1(push_swap, (max)))
+                    {
+                        rotate(push_swap->b, push_swap);
+                        puts("rb");
+                        push_swap->nbr_of_inst++;
+                    }
+                    else if (len_b < get_index1(push_swap, (max)))
+                    {
+                        rot_rot(push_swap->b, push_swap);
+                        puts("rrb");
+                        push_swap->nbr_of_inst++;
+                    }
+                }
+                if (ft_atoi(push_swap->b[0]) == max)
+                {
+                    push_a(push_swap);
+                    puts("pa");
+                    push_swap->nbr_of_inst++;
+                    max = get_max(push_swap);
+                }
             }
         }
     }
