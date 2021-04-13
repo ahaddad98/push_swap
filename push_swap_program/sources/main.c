@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/13 02:19:37 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/13 02:27:13 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,14 @@ void    algo_less_5_elem(t_push_swap *push_swap)
     len_b = 0;
     if (count_line(push_swap->a) == 3)
         algo_3_elem(push_swap);
+    if (count_line(push_swap->a) == 2)
+    {
+        if (ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[1]))
+        {
+            swap_a(push_swap->a, push_swap);
+            puts("sa");
+        }
+    }
     if (count_line(push_swap->b) == 2)
     {
         if (ft_atoi(push_swap->b[0]) <  ft_atoi(push_swap->b[1]))
