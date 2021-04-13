@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/13 16:25:09 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/13 16:26:56 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -232,3 +232,5 @@ int main(int ac, char **av)
     //     ft_free_2dem_arr((void ***)&push_swap.b);
     return (0);
 }
+
+//./push_swap 2 1 3 6 5 8 | ./checker 2 1 3 6 5 8
