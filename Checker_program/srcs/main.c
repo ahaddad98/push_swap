@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/13 11:54:46 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/13 16:25:09 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,7 +137,10 @@ int main(int ac, char **av)
     t_push_swap push_swap;
     char    *line;
     int        ret_read;
+    char *str;
     push_swap.checker = 0;
+    push_swap.a = NULL;
+    // if ( ac > 1)
     push_swap.a = malloc(sizeof(char *) * ac);
     while (i < ac)
     {
@@ -148,74 +151,84 @@ int main(int ac, char **av)
     push_swap.a[k] = NULL;
     push_swap.b = NULL;
     push_swap.checker = 0;
-    while (1)
+    char *tmp;
+    int che = 0;
+    ret_read = 1;
+    while (ret_read > 0)
     {
-        line =  malloc(sizeof(char) * 1000);
-        ft_bzero(line, sizeof(char) * 1000);
-        ret_read = read(0, line, 1000);
-        if (!ft_strcmp(line, "\n"))
-            continue ;
-        if (!ft_strcmp(line, "sa\n"))
-            swap_a(push_swap.a, &push_swap);
-        if (!ft_strcmp(line, "sb\n"))
-            swap_b(push_swap.b, &push_swap);
-        if (!ft_strcmp(line, "ss\n"))
+        line =  malloc(sizeof(char) * 100);
+        ft_bzero(line, sizeof(char) * 100);
+        ret_read = read(0, line, 100);
+        if (che == 0)
         {
-            swap_a(push_swap.b, &push_swap);
-            swap_b(push_swap.a, &push_swap);
+            str = ft_strdup(line);
+            che = 1;
         }
-        if (!ft_strcmp(line, "pa\n"))
-            push_a(&push_swap);
-        if (!ft_strcmp(line, "pb\n"))
-            push_b(&push_swap);
-        if (!ft_strcmp(line, "ra\n"))
-            rotate(push_swap.a, &push_swap);
-        if (!ft_strcmp(line, "rb\n"))
-            rotate(push_swap.b, &push_swap);
-        if (!ft_strcmp(line, "rr\n"))
-        {
-            rotate(push_swap.a, &push_swap);
-            rotate(push_swap.b, &push_swap);
-        }
-        if (!ft_strcmp(line, "rra\n"))
-            rot_rot(push_swap.a, &push_swap);
-        if (!ft_strcmp(line, "rrb\n"))
-            rot_rot(push_swap.b, &push_swap);
-        if (!ft_strcmp(line, "rrr\n"))
-        {
-            rot_rot(push_swap.a, &push_swap);
-            rot_rot(push_swap.b, &push_swap);
-        }
-        if (count_line(push_swap.b) != 0)
-            push_swap.checker = 1;
+        str = ft_strjoin(str, line);
+        // if (!ft_strcmp(line, "\n"))
+        //     continue ;
+        // if (!ft_strcmp(line, "sa\n"))
+        //     swap_a(push_swap.a, &push_swap);
+        // if (!ft_strcmp(line, "sb\n"))
+        //     swap_b(push_swap.b, &push_swap);
+        // if (!ft_strcmp(line, "ss\n"))
+        // {
+        //     swap_a(push_swap.b, &push_swap);
+        //     swap_b(push_swap.a, &push_swap);
+        // }
+        // if (!ft_strcmp(line, "pa\n"))
+        //     push_a(&push_swap);
+        // if (!ft_strcmp(line, "pb\n"))
+        //     push_b(&push_swap);
+        // if (!ft_strcmp(line, "ra\n"))
+        //     rotate(push_swap.a, &push_swap);
+        // if (!ft_strcmp(line, "rb\n"))
+        //     rotate(push_swap.b, &push_swap);
+        // if (!ft_strcmp(line, "rr\n"))
+        // {
+        //     rotate(push_swap.a, &push_swap);
+        //     rotate(push_swap.b, &push_swap);
+        // }
+        // if (!ft_strcmp(line, "rra\n"))
+        //     rot_rot(push_swap.a, &push_swap);
+        // if (!ft_strcmp(line, "rrb\n"))
+        //     rot_rot(push_swap.b, &push_swap);
+        // if (!ft_strcmp(line, "rrr\n"))
+        // {
+        //     rot_rot(push_swap.a, &push_swap);
+        //     rot_rot(push_swap.b, &push_swap);
+        // }
+        // if (count_line(push_swap.b) != 0)
+        //     push_swap.checker = 1;
         if (ft_strlen(line) == 0)
             break ;
+        // ft_free_arr((void **)&line);
     }
-    // if (!push_swap.b)
-    //     ft_putendl_fd("KO", 1);
-    // else if (push_swap.checker == 1)
-    //     ft_putendl_fd("KO", 1);
+    // puts("********************************");
+    puts(str);
+    // puts("********************************");
+    // ft_free_arr((void **)&line);
+    // if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
+    //     puts("OK");
     // else
-    //     ft_putendl_fd("OK", 1);
-    if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
-        puts("OK");
-    else
-    {
-        puts("KO");
-    }
-    k = 0;
-    puts("--------------------------------------------------------------");
-    while (push_swap.a && push_swap.a[k])
-    {
-        ft_putendl_fd(push_swap.a[k], 1);
-        k++;
-    }
-    k = 0;
-    puts("--------------------------------------------------------------");
-    while (push_swap.b&&push_swap.b[k])
-    {
-        ft_putendl_fd(push_swap.b[k], 1);
-        k++;
-    }
+    //     puts("KO");
+    // k = 0;
+    // puts("--------------------------------------------------------------");
+    // while (push_swap.a && push_swap.a[k])
+    // {
+    //     ft_putendl_fd(push_swap.a[k], 1);
+    //     k++;
+    // }
+    // i = 0;
+    // puts("--------------------------------------------------------------");
+    // while (push_swap.b&&push_swap.b[i])
+    // {
+    //     ft_putendl_fd(push_swap.b[i], 1);
+    //     i++;
+    // }
+    // if (push_swap.a)
+    //     ft_free_2dem_arr((void ***)&push_swap.a);
+    // if (push_swap.b)
+    //     ft_free_2dem_arr((void ***)&push_swap.b);
     return (0);
 }
