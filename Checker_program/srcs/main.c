@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/07 11:45:36 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/13 11:54:46 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,27 @@ void print(t_push_swap *push_swap)
     }
 }
 
+int        check_if_sort(t_push_swap *push_swap)
+{
+    int i = 0;
+    int j = 0;
+    int k = 0;
+    while (push_swap->a[i])
+    {
+        j  = i;
+        while (push_swap->a[j])
+        {
+            if (push_swap->a[i] > push_swap->a[j])
+            {
+                return (1);
+            }
+            j++;
+        }
+        i++;
+    }
+    return (0);
+}
+
 int main(int ac, char **av)
 {
     int         i = 1;
@@ -170,12 +191,18 @@ int main(int ac, char **av)
         if (ft_strlen(line) == 0)
             break ;
     }
-    if (!push_swap.b)
-        ft_putendl_fd("KO", 1);
-    else if (push_swap.checker == 1)
-        ft_putendl_fd("KO", 1);
+    // if (!push_swap.b)
+    //     ft_putendl_fd("KO", 1);
+    // else if (push_swap.checker == 1)
+    //     ft_putendl_fd("KO", 1);
+    // else
+    //     ft_putendl_fd("OK", 1);
+    if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
+        puts("OK");
     else
-        ft_putendl_fd("OK", 1);
+    {
+        puts("KO");
+    }
     k = 0;
     puts("--------------------------------------------------------------");
     while (push_swap.a && push_swap.a[k])
