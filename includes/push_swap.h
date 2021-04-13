@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/13 01:36:56 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/13 02:32:29 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ int         get_max(t_push_swap *push_swap);
 int         get_min(t_push_swap *push_swap);
 void        algo_3_elem(t_push_swap *push_swap);
 void        use_mediane(t_push_swap *push_swap, int len);
+void    push_b_less_med(t_push_swap *push_swap , int len);
 
 #endif
