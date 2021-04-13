@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 00:42:25 by amine             #+#    #+#             */
-/*   Updated: 2021/04/13 00:50:03 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/13 02:17:40 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,16 @@ void tri_insert(t_push_swap *push_swap, int len)
         i++;
     }
     push_swap->mediane = 9223372036854775807;
-    if (len <= 20)
+    if (len <= 5)
+    {
+        push_swap->med = malloc(sizeof(char *) * 2);
+        i = len / 2;
+        int k = 0;
+        push_swap->med[k] = ft_strdup(tmp1[i]);
+        k++;
+        push_swap->med[k] = NULL;
+    }
+    else if (len > 5  && len <= 20)
     {
         push_swap->med = malloc(sizeof(char *) * 2);
         i = len / 2;
