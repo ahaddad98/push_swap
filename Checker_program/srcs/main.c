@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/13 16:26:56 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/13 16:33:52 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -154,17 +154,19 @@ int main(int ac, char **av)
     char *tmp;
     int che = 0;
     ret_read = 1;
-    while (ret_read > 0)
+    puts("****************************************");
+    while (ret_read > 0 && ft_strcmp(line, "\n"))
     {
         line =  malloc(sizeof(char) * 100);
         ft_bzero(line, sizeof(char) * 100);
         ret_read = read(0, line, 100);
-        if (che == 0)
-        {
-            str = ft_strdup(line);
-            che = 1;
-        }
-        str = ft_strjoin(str, line);
+        // puts("amine");
+        // if (che == 0)
+        // {
+        //     str = ft_strdup(line);
+        //     che = 1;
+        // }
+        // str = ft_strjoin(str, line);
         // if (!ft_strcmp(line, "\n"))
         //     continue ;
         // if (!ft_strcmp(line, "sa\n"))
@@ -204,8 +206,9 @@ int main(int ac, char **av)
             break ;
         // ft_free_arr((void **)&line);
     }
+    puts("****************************************");
     // puts("********************************");
-    puts(str);
+    // puts(str);
     // puts("********************************");
     // ft_free_arr((void **)&line);
     // if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
