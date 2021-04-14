@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: amine <amine@student.42.fr>                +#+  +:+       +#+         #
+#    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/04/13 01:30:46 by amine            ###   ########.fr        #
+#    Updated: 2021/04/14 13:32:29 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,8 @@ SRC_NAME=swap.c\
 		main.c\
 		push.c\
 		rotation.c\
+		get_next_line.c\
+		get_next_line_utils.c\
 		
 
 SRC_NAME1=main.c\

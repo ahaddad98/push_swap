@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/13 16:33:52 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/14 14:01:57 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,31 +84,6 @@ int     is_error()
 
 }
 
-void print(t_push_swap *push_swap)
-{
-    int k = 0;
-    int i = 0;
-    printf("|            a            |            b            |\n");
-    printf("|---------------------------------------------------|\n");
-    // puts("laloli");
-    // ft_putnbr_fd(count_line(push_swap->a), 1);
-    // puts("--------------------------");
-    // ft_putnbr_fd(count_line(push_swap->b), 1);
-    while (push_swap->a[k] || count_line(push_swap->b) > 0)
-    {
-        if (push_swap->a[k] && (push_swap->b && push_swap->b[i]))
-            printf("|            %s            |            %s            |\n", push_swap->a[k], push_swap->b[i]);
-        else if (!push_swap->a[k] && (push_swap->b && push_swap->b[i]))
-            printf("|                         |            %s            |\n", push_swap->b[i]);
-        else if (push_swap->a[k] && !push_swap->b)
-            printf("|            %s            |                         |\n", push_swap->a[k]);
-        if (push_swap->a[k])
-            k++;
-        if (push_swap->b && push_swap->b[i])
-            i++;
-    }
-}
-
 int        check_if_sort(t_push_swap *push_swap)
 {
     int i = 0;
@@ -140,7 +115,6 @@ int main(int ac, char **av)
     char *str;
     push_swap.checker = 0;
     push_swap.a = NULL;
-    // if ( ac > 1)
     push_swap.a = malloc(sizeof(char *) * ac);
     while (i < ac)
     {
@@ -152,87 +126,72 @@ int main(int ac, char **av)
     push_swap.b = NULL;
     push_swap.checker = 0;
     char *tmp;
-    int che = 0;
-    ret_read = 1;
-    puts("****************************************");
-    while (ret_read > 0 && ft_strcmp(line, "\n"))
+    ret_read= 1;
+    while (1)
     {
-        line =  malloc(sizeof(char) * 100);
-        ft_bzero(line, sizeof(char) * 100);
-        ret_read = read(0, line, 100);
-        // puts("amine");
-        // if (che == 0)
-        // {
-        //     str = ft_strdup(line);
-        //     che = 1;
-        // }
-        // str = ft_strjoin(str, line);
-        // if (!ft_strcmp(line, "\n"))
-        //     continue ;
-        // if (!ft_strcmp(line, "sa\n"))
-        //     swap_a(push_swap.a, &push_swap);
-        // if (!ft_strcmp(line, "sb\n"))
-        //     swap_b(push_swap.b, &push_swap);
-        // if (!ft_strcmp(line, "ss\n"))
-        // {
-        //     swap_a(push_swap.b, &push_swap);
-        //     swap_b(push_swap.a, &push_swap);
-        // }
-        // if (!ft_strcmp(line, "pa\n"))
-        //     push_a(&push_swap);
-        // if (!ft_strcmp(line, "pb\n"))
-        //     push_b(&push_swap);
-        // if (!ft_strcmp(line, "ra\n"))
-        //     rotate(push_swap.a, &push_swap);
-        // if (!ft_strcmp(line, "rb\n"))
-        //     rotate(push_swap.b, &push_swap);
-        // if (!ft_strcmp(line, "rr\n"))
-        // {
-        //     rotate(push_swap.a, &push_swap);
-        //     rotate(push_swap.b, &push_swap);
-        // }
-        // if (!ft_strcmp(line, "rra\n"))
-        //     rot_rot(push_swap.a, &push_swap);
-        // if (!ft_strcmp(line, "rrb\n"))
-        //     rot_rot(push_swap.b, &push_swap);
-        // if (!ft_strcmp(line, "rrr\n"))
-        // {
-        //     rot_rot(push_swap.a, &push_swap);
-        //     rot_rot(push_swap.b, &push_swap);
-        // }
-        // if (count_line(push_swap.b) != 0)
-        //     push_swap.checker = 1;
+        ret_read = get_next_line(0, &line);
+        if (!ft_strcmp(line, "\n"))
+            continue ;
+        if (!ft_strcmp(line, "sa"))
+            swap_a(push_swap.a, &push_swap);
+        if (!ft_strcmp(line, "sb"))
+            swap_b(push_swap.b, &push_swap);
+        if (!ft_strcmp(line, "ss"))
+        {
+            swap_a(push_swap.b, &push_swap);
+            swap_b(push_swap.a, &push_swap);
+        }
+        if (!ft_strcmp(line, "pa"))
+            push_a(&push_swap);
+        if (!ft_strcmp(line, "pb"))
+            push_b(&push_swap);
+        if (!ft_strcmp(line, "ra"))
+            rotate(push_swap.a, &push_swap);
+        if (!ft_strcmp(line, "rb"))
+            rotate(push_swap.b, &push_swap);
+        if (!ft_strcmp(line, "rr"))
+        {
+            rotate(push_swap.a, &push_swap);
+            rotate(push_swap.b, &push_swap);
+        }
+        if (!ft_strcmp(line, "rra"))
+            rot_rot(push_swap.a, &push_swap);
+        if (!ft_strcmp(line, "rrb"))
+            rot_rot(push_swap.b, &push_swap);
+        if (!ft_strcmp(line, "rrr"))
+        {
+            rot_rot(push_swap.a, &push_swap);
+            rot_rot(push_swap.b, &push_swap);
+        }
+        if (count_line(push_swap.b) != 0)
+            push_swap.checker = 1;
         if (ft_strlen(line) == 0)
             break ;
-        // ft_free_arr((void **)&line);
+        ft_free_arr((void **)&line);
     }
-    puts("****************************************");
-    // puts("********************************");
-    // puts(str);
-    // puts("********************************");
-    // ft_free_arr((void **)&line);
-    // if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
-    //     puts("OK");
-    // else
-    //     puts("KO");
-    // k = 0;
-    // puts("--------------------------------------------------------------");
-    // while (push_swap.a && push_swap.a[k])
-    // {
-    //     ft_putendl_fd(push_swap.a[k], 1);
-    //     k++;
-    // }
-    // i = 0;
-    // puts("--------------------------------------------------------------");
-    // while (push_swap.b&&push_swap.b[i])
-    // {
-    //     ft_putendl_fd(push_swap.b[i], 1);
-    //     i++;
-    // }
-    // if (push_swap.a)
-    //     ft_free_2dem_arr((void ***)&push_swap.a);
-    // if (push_swap.b)
-    //     ft_free_2dem_arr((void ***)&push_swap.b);
+    ft_free_arr((void **)&line);
+    if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
+        puts("OK");
+    else
+        puts("KO");
+    k = 0;
+    puts("--------------------------------------------------------------");
+    while (push_swap.a && push_swap.a[k])
+    {
+        ft_putendl_fd(push_swap.a[k], 1);
+        k++;
+    }
+    i = 0;
+    puts("--------------------------------------------------------------");
+    while (push_swap.b&&push_swap.b[i])
+    {
+        ft_putendl_fd(push_swap.b[i], 1);
+        i++;
+    }
+    if (push_swap.a)
+        ft_free_2dem_arr((void ***)&push_swap.a);
+    if (push_swap.b)
+        ft_free_2dem_arr((void ***)&push_swap.b);
     return (0);
 }
 
