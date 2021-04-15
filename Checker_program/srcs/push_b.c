@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_b.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 03:32:09 by amine             #+#    #+#             */
-/*   Updated: 2021/04/15 03:32:40 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/15 12:11:46 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,11 +107,11 @@ void            push_b(t_push_swap *push_swap)
                 i++;
             }
             push_swap->a[i] = NULL;
+            if (new_a)
+                ft_free_2dem_arr((void ***)&new_a);
         }
         push_swap->b = ft_strdup_2d(new_b);
         // ft_free_2dem_arr((void ***)&new_b);
-        if (new_a)
-            ft_free_2dem_arr((void ***)&new_a);
         if (new_b)
             ft_free_2dem_arr((void ***)&new_b);
     }

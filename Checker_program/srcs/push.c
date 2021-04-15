@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/04/15 04:05:24 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/15 11:59:06 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@ void            check_is_empty1(t_push_swap *push_swap, char **new_a, char **new
     new_a[0] = ft_strdup(push_swap->b[0]);
     new_a[1] = NULL;
     if ((count_line(push_swap->b) - 1) <= 0)
+    {
         if (push_swap->b)
             ft_free_2dem_arr((void ***)&push_swap->b);
+    }
     else
     {
         new_b = malloc(sizeof(char *) * (count_line(push_swap->b)));
