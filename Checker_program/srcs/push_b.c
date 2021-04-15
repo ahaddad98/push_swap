@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/15 03:32:09 by amine             #+#    #+#             */
-/*   Updated: 2021/04/15 12:11:46 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/15 16:03:09 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void            push_b(t_push_swap *push_swap)
     int i = 0;
     int j = 1;
     char *tmp;
-    // new_a = NULL;
-    // new_b = NULL;
+
     if (push_swap->a == NULL)
     {
         push_swap->checker = 1;
@@ -32,11 +31,13 @@ void            push_b(t_push_swap *push_swap)
         new_b = malloc(sizeof(char *) * 2);
         new_b[0] = ft_strdup(push_swap->a[0]);
         new_b[1] = NULL;
+        push_swap->b = ft_strdup_2d(new_b);
+        if (new_b)
+            ft_free_2dem_arr((void ***)&new_b);
         if ((count_line(push_swap->a) - 1) <= 0)
         {
             if (push_swap->a)
                 ft_free_2dem_arr((void ***)&push_swap->a);
-            // push_swap->a = NULL;
         }
         else
         {
@@ -46,26 +47,22 @@ void            push_b(t_push_swap *push_swap)
             while (push_swap->a[j])
             {
                 new_a[i] = ft_strdup(push_swap->a[j]);
-                free(push_swap->a[j]);
+                free(push_swap->a[i]);
                 i++;
                 j++;
             }
+            free(push_swap->a[i]);
             new_a[i] = NULL;
             i = 0;
-            free(push_swap->a[0]);
-
             while (new_a[i])
             {
                 push_swap->a[i] = ft_strdup(new_a[i]);
                 i++;
             }
             push_swap->a[i] = NULL;
+            if (new_a)
+                ft_free_2dem_arr((void ***)&new_a);
         }
-        push_swap->b = ft_strdup_2d(new_b);
-        if (new_a)
-            ft_free_2dem_arr((void ***)&new_a);
-        if (new_b)
-            ft_free_2dem_arr((void ***)&new_b);
     }
     else
     {
@@ -77,10 +74,16 @@ void            push_b(t_push_swap *push_swap)
         while (push_swap->b[i])
         {
             new_b[j] = ft_strdup(push_swap->b[i]);
+            free(push_swap->b[i]);
             i++;
             j++;
         }
+        // free(push_swap->b[i]);
+        free(push_swap->b);
         new_b[j] = NULL;
+        push_swap->b = ft_strdup_2d(new_b);
+        if (new_b)
+            ft_free_2dem_arr((void ***)&new_b);
         if ((count_line(push_swap->a) - 1) <= 0)
         {
             if (push_swap->a)
@@ -99,6 +102,8 @@ void            push_b(t_push_swap *push_swap)
                 i++;
                 j++;
             }
+            free(push_swap->a[i]);
+            // free(push_swap->a);
             new_a[i] = NULL;
             i = 0;
             while (new_a[i])
@@ -110,9 +115,5 @@ void            push_b(t_push_swap *push_swap)
             if (new_a)
                 ft_free_2dem_arr((void ***)&new_a);
         }
-        push_swap->b = ft_strdup_2d(new_b);
-        // ft_free_2dem_arr((void ***)&new_b);
-        if (new_b)
-            ft_free_2dem_arr((void ***)&new_b);
     }
 }

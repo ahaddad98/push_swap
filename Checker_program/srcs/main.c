@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/15 12:02:14 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/15 13:03:03 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -167,9 +167,9 @@ int main(int ac, char **av)
             push_swap.checker = 1;
         if (ft_strlen(line) == 0)
             break ;
-        // ft_free_arr((void **)&line);
+        ft_free_arr((void **)&line);
     }
-    // ft_free_arr((void **)&line);
+    ft_free_arr((void **)&line);
     puts("HEEEEERRRREEEEE");
     if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
         puts("OK");
