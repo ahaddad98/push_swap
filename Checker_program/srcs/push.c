@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/04/15 16:08:15 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 01:26:59 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ void            check_is_empty1(t_push_swap *push_swap, char **new_a, char **new
 {
     int i;
     int j;
+    // new_b =NULL;
+    // new_a = NULL;
     new_a = malloc(sizeof(char *) * 2);
     new_a[0] = ft_strdup(push_swap->b[0]);
     new_a[1] = NULL;
@@ -32,13 +34,16 @@ void            check_is_empty1(t_push_swap *push_swap, char **new_a, char **new
         while (push_swap->b[j])
         {
             new_b[i] = ft_strdup(push_swap->b[j]);
-            free(push_swap->b[j]);
+            free(push_swap->b[i]);
             i++;
             j++;
         }
-        free(push_swap->b[j]);
+        free(push_swap->b[i]);
         new_b[i] = NULL;
         i = 0;
+        // if (push_swap->b)
+        //     ft_free_2dem_arr((void ***)&push_swap->a);
+        // push_swap->b = ft_strdup_2d(new_b);
         while (new_b[i])
         {
             push_swap->b[i] = ft_strdup(new_b[i]);
@@ -60,15 +65,16 @@ void        get_new_b(t_push_swap *push_swap, char **new_b)
 
     i = 0;
     j = 1;
+    new_b = NULL;
     new_b = malloc(sizeof(char *) * (count_line(push_swap->b)));
     while (push_swap->b[j])
     {
         new_b[i] = ft_strdup(push_swap->b[j]);
-        free(push_swap->b[j]);
+        free(push_swap->b[i]);
         i++;
         j++;
     }
-    free(push_swap->b[j]);
+    free(push_swap->b[i]);
     new_b[i] = NULL;
     i = 0;
     while (new_b[i])
@@ -120,6 +126,8 @@ void            push_a(t_push_swap *push_swap)
     char **new_b;
     int len_a;
 
+    new_b = NULL;
+    new_a = NULL;
     if (push_swap->b == NULL)
     {
         push_swap->checker = 1;
