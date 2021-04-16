@@ -6,25 +6,14 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 01:29:59 by amine             #+#    #+#             */
-/*   Updated: 2021/04/13 02:36:41 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/16 03:37:09 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void use_mediane(t_push_swap *push_swap, int len)
+void    get_inst(t_push_swap *push_swap, int len_b)
 {
-    int len_b = 0;
-    get_mediane(push_swap, len);
-    push_swap->nbr_of_inst = 0;
-    push_b_less_med(push_swap, len);
-    while (push_swap->a && push_swap->a[0])
-    {
-        push_b(push_swap);
-        puts("pb");
-        push_swap->nbr_of_inst++;
-    }
-    len_b = 0;
     while (push_swap->b && push_swap->b[0])
     {
         int max = get_max(push_swap);
@@ -54,5 +43,21 @@ void use_mediane(t_push_swap *push_swap, int len)
             }
         }
     }
+}
+
+void use_mediane(t_push_swap *push_swap, int len)
+{
+    int len_b = 0;
+    get_mediane(push_swap, len);
+    push_swap->nbr_of_inst = 0;
+    push_b_less_med(push_swap, len);
+    while (push_swap->a && push_swap->a[0])
+    {
+        push_b(push_swap);
+        puts("pb");
+        push_swap->nbr_of_inst++;
+    }
+    len_b = 0;
+    get_inst(push_swap, len_b);
     ft_free_arr((void **)&push_swap->med);
 }
