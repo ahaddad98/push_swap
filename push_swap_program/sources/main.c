@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 03:40:29 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/16 14:53:57 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ void    push_b_less_med(t_push_swap *push_swap , int len)
     int k = 0;
     int j  = 0;
     
-    get_mediane(push_swap, len);
     push_swap->nbr_of_inst = 0;
     if (len >= 2)
     {
@@ -53,6 +52,7 @@ void    push_b_less_med(t_push_swap *push_swap , int len)
             i++;
         }
     }
+    ft_free_2dem_arr((void ***)&push_swap->med);
 }
 
 void    algo_less_5_elem(t_push_swap *push_swap)
@@ -60,8 +60,7 @@ void    algo_less_5_elem(t_push_swap *push_swap)
     int index = 0;
     int len = count_line(push_swap->a);
     int i = 0;
-    // int j = 0;
-    // int k = 0;
+
     int len_a;
     int len_b;
     get_mediane(push_swap, len);
@@ -77,8 +76,6 @@ void    algo_less_5_elem(t_push_swap *push_swap)
         }
     }
     i = count_line(push_swap->med) - 1;
-    // j = 0;
-    // k = 0;
     len_b = 0;
     if (count_line(push_swap->a) == 3)
         algo_3_elem(push_swap);
@@ -111,11 +108,10 @@ int main(int ac, char **av)
     t_push_swap push_swap;
     int i = 1;
     int k = 0;
-    char *line;
     int ret_read;
     push_swap.checker = 0;
-    push_swap.a = malloc(sizeof(char *) * ac);
-    while (i < ac)
+    push_swap.a = malloc(sizeof(char *) * (ac + 1));
+    while (av[i])
     {
         push_swap.a[k] = ft_strdup(av[i]);
         i++;
@@ -140,25 +136,9 @@ int main(int ac, char **av)
         algo_less_5_elem(&push_swap);
     else
         use_mediane(&push_swap, len);
-    k = 0;
-    // puts("-----------------HERE IS : A--------------------------");
-    // while (push_swap.a && push_swap.a[k])
-    // {
-    //     ft_putendl_fd(push_swap.a[k], 1);
-    //     k++;
-    // }
-    i = 0;
-    // puts("-----------------HERE IS : B--------------------------");
-    // while (push_swap.b && push_swap.b[i])
-    // {
-    //     ft_putendl_fd(push_swap.b[i], 1);
-    //     i++;
-    // }
-    // printf("{|%d|}", push_swap.nbr_of_inst);
-    if (k)
+    if (push_swap.a)
         ft_free_2dem_arr((void ***)&push_swap.a);
-    if (i)
+    if (push_swap.b)
         ft_free_2dem_arr((void ***)&push_swap.b);
     return (0);
 }
-//python3 pyviz.py `ruby -e "puts (1..50).to_a.shuffle.join(' ')"`

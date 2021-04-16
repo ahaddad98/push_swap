@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/14 13:30:32 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 14:31:46 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct s_push_swap
 {
     char                        **a;
     char                        **b;
-    int                         *cast_a;
     int                         checker;
     char                        **med;
     int                         nbr_of_med;
@@ -55,7 +54,7 @@ int         get_max(t_push_swap *push_swap);
 int         get_min(t_push_swap *push_swap);
 void        algo_3_elem(t_push_swap *push_swap);
 void        use_mediane(t_push_swap *push_swap, int len);
-void    push_b_less_med(t_push_swap *push_swap , int len);
+void        push_b_less_med(t_push_swap *push_swap , int len);
 size_t          ft_strlen(const char *str);
 char            *ft_strdup(const char *s1);
 char            *ft_strsub(char const *s, unsigned int start, size_t len);

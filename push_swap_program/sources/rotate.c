@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rotation.c                                         :+:      :+:    :+:   */
+/*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 23:36:48 by amine             #+#    #+#             */
-/*   Updated: 2021/03/30 12:03:11 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 13:45:39 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,14 @@ void    rotate(char **a, t_push_swap *push_swap)
     p = ft_strdup(a[0]);
     while (a[j])
     {
+        free(a[i]);
         a[i] = ft_strdup(a[j]);
         i++;
         j++;
     }
+    free(a[i]);
     a[i] = ft_strdup(p);
+    ft_free_arr((void **)&p);
 }
 
 void        rot_rot(char **a, t_push_swap *push_swap)
@@ -57,7 +60,10 @@ void        rot_rot(char **a, t_push_swap *push_swap)
     j = 0;
     while (new_a[j])
     {
+        free(a[j]);
         a[j] = ft_strdup(new_a[j]);
         j++;
     }
+    if (new_a)
+        ft_free_2dem_arr((void ***)&new_a);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 01:30:18 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/16 15:02:59 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void            check_is_empty1(t_push_swap *push_swap, char **new_a, char **new
         free(push_swap->b[i]);
         new_b[i] = NULL;
         i = 0;
-        ft_strdup_2d(new_b);
         while (new_b[i])
         {
             push_swap->b[i] = ft_strdup(new_b[i]);

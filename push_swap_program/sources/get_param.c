@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_param.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 01:09:59 by amine             #+#    #+#             */
-/*   Updated: 2021/04/13 01:14:44 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/16 14:57:55 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int get_max(t_push_swap *push_swap)
     push_swap->max_index = 0;
     if (push_swap->b && push_swap->b[0])
         push_swap->max_in_arr = ft_atoi(push_swap->b[0]);
-    while (push_swap->b && push_swap->b[i]) //&& i != 20
+    while (push_swap->b && push_swap->b[i])
     {
         if (push_swap->max_in_arr < ft_atoi(push_swap->b[i]))
         {
@@ -108,7 +108,7 @@ int get_min(t_push_swap *push_swap)
     push_swap->max_index = 0;
     if (push_swap->a && push_swap->a[0])
         push_swap->max_in_arr = ft_atoi(push_swap->a[0]);
-    while (push_swap->a && push_swap->a[i]) //&& i != 20
+    while (push_swap->a && push_swap->a[i])
     {
         if (push_swap->max_in_arr > ft_atoi(push_swap->a[i]))
         {

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tri_insert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 00:42:25 by amine             #+#    #+#             */
-/*   Updated: 2021/04/13 02:17:40 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/16 14:50:46 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,8 @@ void tri_insert(t_push_swap *push_swap, int len)
     i = 0;
     tmp1 = ft_strdup_2d(push_swap->a);
     i = 0;
-    while (i < len)
+    tmp = NULL;
+    while (tmp1[i])
     {
         j = i;
         tmp = NULL;
@@ -38,7 +39,7 @@ void tri_insert(t_push_swap *push_swap, int len)
         }
         i++;
     }
-    push_swap->mediane = 9223372036854775807;
+    push_swap->med = NULL;
     if (len <= 5)
     {
         push_swap->med = malloc(sizeof(char *) * 2);
@@ -54,10 +55,9 @@ void tri_insert(t_push_swap *push_swap, int len)
         i = len / 2;
         int k = 0;
         push_swap->med[k] = ft_strdup(tmp1[i]);
-        k++;
-        push_swap->med[k] = NULL;
+        push_swap->med[k + 1] = NULL;
     }
-    else if (len <= 100)
+    else if (len > 20 && len <= 100)
     {
         push_swap->med = malloc(sizeof(char *) * ((len / 7)));
         i = len / 7;
@@ -83,6 +83,7 @@ void tri_insert(t_push_swap *push_swap, int len)
         }
         push_swap->med[k] = NULL;
     }
+    ft_free_2dem_arr((void ***)&tmp1);
 }
 
 void get_mediane(t_push_swap *push_swap, int len)
