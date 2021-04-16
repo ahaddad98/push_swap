@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 14:53:57 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:50:23 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,20 +32,17 @@ void    push_b_less_med(t_push_swap *push_swap , int len)
                 if (ft_atoi(push_swap->a[k]) < ft_atoi(push_swap->med[i]))
                 {
                     push_b(push_swap);
-                    puts("pb");
                     push_swap->nbr_of_inst++;
                     j++;
                 }
                 else if (len_a >= get_index(push_swap, ft_atoi(push_swap->med[i])))
                 {
-                    rotate(push_swap->a, push_swap);
-                    puts("ra");
+                    rotate(push_swap->a, push_swap, "ra");
                     push_swap->nbr_of_inst++;
                 }
                 else if (len_a < get_index(push_swap, ft_atoi(push_swap->med[i])))
                 {
-                    rot_rot(push_swap->a, push_swap);
-                    puts("rra");
+                    rot_rot(push_swap->a, push_swap, "rra");
                     push_swap->nbr_of_inst++;
                 }
             }

@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 01:29:59 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 14:45:04 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:57:28 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,21 +23,18 @@ void    get_inst(t_push_swap *push_swap, int len_b)
             {
                 if (len_b >= get_index1(push_swap, (max)))
                 {
-                    rotate(push_swap->b, push_swap);
-                    puts("rb");
+                    rotate(push_swap->b, push_swap, "rb");
                     push_swap->nbr_of_inst++;
                 }
                 else if (len_b < get_index1(push_swap, (max)))
                 {
-                    rot_rot(push_swap->b, push_swap);
-                    puts("rrb");
+                    rot_rot(push_swap->b, push_swap, "rrb");
                     push_swap->nbr_of_inst++;
                 }
             }
             if (ft_atoi(push_swap->b[0]) == max)
             {
                 push_a(push_swap);
-                puts("pa");
                 push_swap->nbr_of_inst++;
                 max = get_max(push_swap);
             }

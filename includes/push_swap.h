@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 14:31:46 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:52:24 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,8 @@ void        push_a(t_push_swap *push_swap);
 void        push_b(t_push_swap *push_swap);
 char		**ft_strdup_2d(char **str);
 int			count_line(char **env);
-void        rotate(char **a, t_push_swap *push_swap);
-void        rot_rot(char **a, t_push_swap *push_swap);
+void        rotate(char **a, t_push_swap *push_swap, char *msg);
+void        rot_rot(char **a, t_push_swap *push_swap, char *msg);
 int         ft_strcmp(const char *s1, const char *s2);
 void        swap_b(char **tab, t_push_swap *push_swap);
 void		ft_free_2dem_arr(void ***arr);

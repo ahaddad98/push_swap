@@ -6,13 +6,13 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 23:36:48 by amine             #+#    #+#             */
-/*   Updated: 2021/04/14 16:01:00 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:52:47 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void    rotate(char **a, t_push_swap *push_swap)
+void    rotate(char **a, t_push_swap *push_swap, char *msg)
 {
     char *p;
     int  i = 0;
@@ -36,7 +36,7 @@ void    rotate(char **a, t_push_swap *push_swap)
     ft_free_arr((void **)&p);
 }
 
-void        rot_rot(char **a, t_push_swap *push_swap)
+void        rot_rot(char **a, t_push_swap *push_swap, char *msg)
 {
     char *p;
     int i = 0;

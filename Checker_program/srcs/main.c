@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 03:18:27 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/16 15:54:17 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,22 +70,22 @@ void        get_instruc(t_push_swap *push_swap, char *line)
     if (!ft_strcmp(line, "pb"))
         push_b(push_swap);
     if (!ft_strcmp(line, "ra"))
-        rotate(push_swap->a, push_swap);
+        rotate(push_swap->a, push_swap, NULL);
     if (!ft_strcmp(line, "rb"))
-        rotate(push_swap->b, push_swap);
+        rotate(push_swap->b, push_swap, NULL);
     if (!ft_strcmp(line, "rr"))
     {
-        rotate(push_swap->a, push_swap);
-        rotate(push_swap->b, push_swap);
+        rotate(push_swap->a, push_swap, NULL);
+        rotate(push_swap->b, push_swap, NULL);
     }
     if (!ft_strcmp(line, "rra"))
-        rot_rot(push_swap->a, push_swap);
+        rot_rot(push_swap->a, push_swap, NULL);
     if (!ft_strcmp(line, "rrb"))
-        rot_rot(push_swap->b, push_swap);
+        rot_rot(push_swap->b, push_swap, NULL);
     if (!ft_strcmp(line, "rrr"))
     {
-        rot_rot(push_swap->a, push_swap);
-        rot_rot(push_swap->b, push_swap);
+        rot_rot(push_swap->a, push_swap, NULL);
+        rot_rot(push_swap->b, push_swap, NULL);
     }
     if (count_line(push_swap->b) != 0)
         push_swap->checker = 1;

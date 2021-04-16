@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 13:54:17 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:58:42 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void        swap_a(char **tab, t_push_swap *push_swap)
 	free(push_swap->a[1]);
     push_swap->a[1] = ft_strdup(p);
 	ft_free_arr((void **)&p);
+	ft_putendl_fd("sa", 1);
 }
 
 void        swap_b(char **tab, t_push_swap *push_swap)
@@ -63,4 +64,5 @@ void        swap_b(char **tab, t_push_swap *push_swap)
 	free(push_swap->b[1]);
     push_swap->b[1] = ft_strdup(p);
 	ft_free_arr((void **)&p);
+	ft_putendl_fd("sb" ,1);
 }

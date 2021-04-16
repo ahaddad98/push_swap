@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 13:44:11 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 13:44:25 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 15:58:19 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,4 +116,5 @@ void            push_b(t_push_swap *push_swap)
                 ft_free_2dem_arr((void ***)&new_a);
         }
     }
+    ft_putendl_fd("pb" , 1);
 }
