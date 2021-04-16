@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 01:29:59 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 15:57:28 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 17:07:05 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ void use_mediane(t_push_swap *push_swap, int len)
     while (push_swap->a && push_swap->a[0])
     {
         push_b(push_swap);
-        puts("pb");
         push_swap->nbr_of_inst++;
     }
     len_b = 0;
