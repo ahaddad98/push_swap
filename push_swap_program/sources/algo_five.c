@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:07:47 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 16:08:13 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:53:25 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void    algo_less_5_elem(t_push_swap *push_swap)
         while (push_swap->a && push_swap->a[0] && (count_line(push_swap->a) > 3))
         {
             push_b(push_swap);
-            puts("pb");
             push_swap->nbr_of_inst++;
         }
     }
@@ -41,7 +40,6 @@ void    algo_less_5_elem(t_push_swap *push_swap)
         if (ft_atoi(push_swap->a[0]) > ft_atoi(push_swap->a[1]))
         {
             swap_a(push_swap->a, push_swap);
-            puts("sa");
         }
     }
     if (count_line(push_swap->b) == 2)
@@ -49,12 +47,10 @@ void    algo_less_5_elem(t_push_swap *push_swap)
         if (ft_atoi(push_swap->b[0]) <  ft_atoi(push_swap->b[1]))
         {
             swap_b(push_swap->b, push_swap);
-            puts("sb");
         }
         while (push_swap->b && push_swap->b[0])
         {
             push_a(push_swap);
-            puts("pa");
             push_swap->nbr_of_inst++;
         }
     }

@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 16:23:18 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:49:46 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,6 +129,7 @@ void            push_a(t_push_swap *push_swap)
 
     new_b = NULL;
     new_a = NULL;
+    ft_putendl_fd("pa", 1);
     if (push_swap->b == NULL)
     {
         push_swap->checker = 1;
@@ -138,5 +139,4 @@ void            push_a(t_push_swap *push_swap)
         check_is_empty1(push_swap, new_a, new_b);
     else
         push_is_not_empt(push_swap, new_a, new_b);
-    ft_putendl_fd("pa", 1);
 }
