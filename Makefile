@@ -6,7 +6,7 @@
 #    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/04/16 13:45:47 by ahaddad          ###   ########.fr        #
+#    Updated: 2021/04/16 16:09:53 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,9 @@ SRC_NAME1=main.c\
 		get_param.c\
 		algo_three.c\
 		get_use_med.c\
+		tools2.c\
+		algo_five.c\
+		
 
 HDR_NAME=push_swap.h
 

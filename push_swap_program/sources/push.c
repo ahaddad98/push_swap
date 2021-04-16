@@ -6,11 +6,39 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 15:58:08 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:23:18 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+void            get_b(t_push_swap *push_swap, char **new_b)
+{
+    int i;
+    int j;
+
+    new_b = malloc(sizeof(char *) * (count_line(push_swap->b)));
+    i = 0;
+    j = 1;
+    while (push_swap->b[j])
+    {
+        new_b[i] = ft_strdup(push_swap->b[j]);
+        free(push_swap->b[i]);
+        i++;
+        j++;
+    }
+    free(push_swap->b[i]);
+    new_b[i] = NULL;
+    i = 0;
+    while (new_b[i])
+    {
+        push_swap->b[i] = ft_strdup(new_b[i]);
+        i++;
+    }
+    push_swap->b[i] = NULL;
+    if (new_b)
+        ft_free_2dem_arr((void ***)&new_b);
+}
 
 void            check_is_empty1(t_push_swap *push_swap, char **new_a, char **new_b)
 {
@@ -26,29 +54,7 @@ void            check_is_empty1(t_push_swap *push_swap, char **new_a, char **new
             ft_free_2dem_arr((void ***)&push_swap->b);
     }
     else
-    {
-        new_b = malloc(sizeof(char *) * (count_line(push_swap->b)));
-        i = 0;
-        j = 1;
-        while (push_swap->b[j])
-        {
-            new_b[i] = ft_strdup(push_swap->b[j]);
-            free(push_swap->b[i]);
-            i++;
-            j++;
-        }
-        free(push_swap->b[i]);
-        new_b[i] = NULL;
-        i = 0;
-        while (new_b[i])
-        {
-            push_swap->b[i] = ft_strdup(new_b[i]);
-            i++;
-        }
-        push_swap->b[i] = NULL;
-        if (new_b)
-            ft_free_2dem_arr((void ***)&new_b);
-    }
+        get_b(push_swap, new_b);
     push_swap->a = ft_strdup_2d(new_a);
     if (new_a)
         ft_free_2dem_arr((void ***)&new_a);

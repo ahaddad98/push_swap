@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 15:52:24 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 16:08:39 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ int         get_index1(t_push_swap *push_swap, int med);
 int         get_max(t_push_swap *push_swap);
 int         get_min(t_push_swap *push_swap);
 void        algo_3_elem(t_push_swap *push_swap);
+void    algo_less_5_elem(t_push_swap *push_swap);
 void        use_mediane(t_push_swap *push_swap, int len);
 void        push_b_less_med(t_push_swap *push_swap , int len);
 size_t          ft_strlen(const char *str);
