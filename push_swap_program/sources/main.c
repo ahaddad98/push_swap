@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/13 02:32:03 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/16 03:40:29 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,8 +60,8 @@ void    algo_less_5_elem(t_push_swap *push_swap)
     int index = 0;
     int len = count_line(push_swap->a);
     int i = 0;
-    int j = 0;
-    int k = 0;
+    // int j = 0;
+    // int k = 0;
     int len_a;
     int len_b;
     get_mediane(push_swap, len);
@@ -77,8 +77,8 @@ void    algo_less_5_elem(t_push_swap *push_swap)
         }
     }
     i = count_line(push_swap->med) - 1;
-    j = 0;
-    k = 0;
+    // j = 0;
+    // k = 0;
     len_b = 0;
     if (count_line(push_swap->a) == 3)
         algo_3_elem(push_swap);
