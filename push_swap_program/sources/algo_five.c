@@ -3,35 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   algo_five.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:07:47 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 16:53:25 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/16 20:44:13 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void    algo_less_5_elem(t_push_swap *push_swap)
+void    get_algo_now(t_push_swap *push_swap, int len_b)
 {
-    int index = 0;
-    int len = count_line(push_swap->a);
-    int i = 0;
-
-    int len_a;
-    int len_b;
-    get_mediane(push_swap, len);
-    push_swap->nbr_of_inst = 0;
-    push_b_less_med(push_swap, len);
-    if (len == 5)
-    {
-        while (push_swap->a && push_swap->a[0] && (count_line(push_swap->a) > 3))
-        {
-            push_b(push_swap);
-            push_swap->nbr_of_inst++;
-        }
-    }
-    i = count_line(push_swap->med) - 1;
     len_b = 0;
     if (count_line(push_swap->a) == 3)
         algo_3_elem(push_swap);
@@ -54,4 +36,25 @@ void    algo_less_5_elem(t_push_swap *push_swap)
             push_swap->nbr_of_inst++;
         }
     }
+}
+
+void    algo_less_5_elem(t_push_swap *push_swap)
+{
+    int index = 0;
+    int len = count_line(push_swap->a);
+    int len_a;
+    int len_b;
+
+    get_mediane(push_swap, len);
+    push_swap->nbr_of_inst = 0;
+    push_b_less_med(push_swap, len);
+    if (len == 5)
+    {
+        while (push_swap->a && push_swap->a[0] && (count_line(push_swap->a) > 3))
+        {
+            push_b(push_swap);
+            push_swap->nbr_of_inst++;
+        }
+    }
+    get_algo_now(push_swap, len_b);
 }

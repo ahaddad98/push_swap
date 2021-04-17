@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 23:36:48 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 15:57:01 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 03:32:46 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void        rot_rot(char **a, t_push_swap *push_swap, char *msg)
     int j = 1;
     char **new_a;
     int len = count_line(a);
+
     if (!a)
     {
         push_swap->checker = 1;

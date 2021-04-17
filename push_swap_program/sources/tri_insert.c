@@ -3,14 +3,70 @@
 /*                                                        :::      ::::::::   */
 /*   tri_insert.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 00:42:25 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 14:50:46 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 03:48:52 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
+
+void    get_med_com(t_push_swap *push_swap , int len , char **tmp1, int i)
+{
+    int k;
+
+    if (len > 20 && len <= 100)
+    {
+        push_swap->med = malloc(sizeof(char *) * ((len / 7)));
+        i = len / 7;
+        k = 0;
+        while (i < len)
+        {
+            push_swap->med[k] = ft_strdup(tmp1[i]);
+            k++;
+            i = i + (len / 7);
+        }
+        push_swap->med[k] = NULL;
+    }
+    else if (len > 100)
+    {
+        push_swap->med = malloc(sizeof(char *) * ((len / 12)));
+        i = len / 12;
+        k = 0;
+        while (i < len)
+        {
+            push_swap->med[k] = ft_strdup(tmp1[i]);
+            k++;
+            i = i + (len / 12);
+        }
+        push_swap->med[k] = NULL;
+    }
+}
+
+void    get_med_len(t_push_swap *push_swap , int len , char **tmp1, int i)
+{
+    int k;
+    if (len <= 5)
+    {
+        push_swap->med = malloc(sizeof(char *) * 2);
+        i = len / 2;
+        k = 0;
+        push_swap->med[k] = ft_strdup(tmp1[i]);
+        k++;
+        push_swap->med[k] = NULL;
+    }
+    else if (len > 5  && len <= 20)
+    {
+        push_swap->med = malloc(sizeof(char *) * 2);
+        i = len / 2;
+        k = 0;
+        push_swap->med[k] = ft_strdup(tmp1[i]);
+        push_swap->med[k + 1] = NULL;
+    }
+    else
+        get_med_com(push_swap , len , tmp1 , i);
+}
 
 void tri_insert(t_push_swap *push_swap, int len)
 {
@@ -40,49 +96,7 @@ void tri_insert(t_push_swap *push_swap, int len)
         i++;
     }
     push_swap->med = NULL;
-    if (len <= 5)
-    {
-        push_swap->med = malloc(sizeof(char *) * 2);
-        i = len / 2;
-        int k = 0;
-        push_swap->med[k] = ft_strdup(tmp1[i]);
-        k++;
-        push_swap->med[k] = NULL;
-    }
-    else if (len > 5  && len <= 20)
-    {
-        push_swap->med = malloc(sizeof(char *) * 2);
-        i = len / 2;
-        int k = 0;
-        push_swap->med[k] = ft_strdup(tmp1[i]);
-        push_swap->med[k + 1] = NULL;
-    }
-    else if (len > 20 && len <= 100)
-    {
-        push_swap->med = malloc(sizeof(char *) * ((len / 7)));
-        i = len / 7;
-        int k = 0;
-        while (i < len)
-        {
-            push_swap->med[k] = ft_strdup(tmp1[i]);
-            k++;
-            i = i + (len / 7);
-        }
-        push_swap->med[k] = NULL;
-    }
-    else if (len > 100)
-    {
-        push_swap->med = malloc(sizeof(char *) * ((len / 12)));
-        i = len / 12;
-        int k = 0;
-        while (i < len)
-        {
-            push_swap->med[k] = ft_strdup(tmp1[i]);
-            k++;
-            i = i + (len / 12);
-        }
-        push_swap->med[k] = NULL;
-    }
+    get_med_len(push_swap , len, tmp1, i);
     ft_free_2dem_arr((void ***)&tmp1);
 }
 
