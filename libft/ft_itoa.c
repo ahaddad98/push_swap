@@ -6,15 +6,15 @@
 /*   By: ahaddad <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 12:52:24 by ahaddad           #+#    #+#             */
-/*   Updated: 2019/10/30 19:11:01 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 15:16:34 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int		countnbr(int n)
+int	countnbr(int n)
 {
-	int index;
+	int		index;
 
 	index = 0;
 	if (n == 0)
@@ -35,7 +35,8 @@ char	*ft_itoapos(int n)
 	if (n >= 0)
 	{
 		a = countnbr(n);
-		if (!(p = malloc(sizeof(char) * (a + 1))))
+		p = malloc(sizeof(char) * (a + 1));
+		if (!p)
 			return (NULL);
 		p[a] = '\0';
 		a--;
@@ -60,7 +61,8 @@ char	*ft_itoa(int n)
 	if (n < 0)
 	{
 		a = countnbr(n);
-		if (!(p = malloc(sizeof(char) * (a + 2))))
+		p = malloc(sizeof(char) * (a + 2));
+		if (!p)
 			return (NULL);
 		p[a + 1] = '\0';
 		p[0] = '-';

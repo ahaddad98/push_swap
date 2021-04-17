@@ -6,7 +6,7 @@
 #    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/04/16 16:09:53 by ahaddad          ###   ########.fr        #
+#    Updated: 2021/04/17 15:29:09 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ LIB_PATH= libft
 SRC_NAME=swap.c\
 		main.c\
 		push.c\
-		rotation.c\
+		rotate.c\
 		get_next_line.c\
 		get_next_line_utils.c\
 		push_b.c\

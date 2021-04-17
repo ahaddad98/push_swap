@@ -6,13 +6,13 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 20:55:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/14 13:32:51 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 17:03:52 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-static	int		get_line(char **new, int n, char **line, int fd)
+static	int	get_line(char **new, int n, char **line, int fd)
 {
 	char		*temp;
 	int			i;
@@ -41,7 +41,7 @@ static	int		get_line(char **new, int n, char **line, int fd)
 	return (-1);
 }
 
-int				get_next_line(int fd, char **line)
+int	get_next_line(int fd, char **line)
 {
 	char		*buf;
 	static char	*rt[4864];
@@ -49,20 +49,20 @@ int				get_next_line(int fd, char **line)
 	int			r;
 
 	buf = NULL;
-	if (!line || fd < 0 || fd >= 4864 || BUFFER_SIZE <= 0
-			|| !(buf = malloc(BUFFER_SIZE + 1)) || read(fd, buf, 0) == -1)
+	buf = malloc(BUFFER_SIZE + 1);
+	if (!line || !buf || read(fd, buf, 0) == -1)
 		return (-1);
 	if (!rt[fd])
-		if (!(rt[fd] = ft_strdup("")))
-			return (-1);
-	while ((!ft_strchr(rt[fd], '\n')) && (r = read(fd, buf, BUFFER_SIZE)))
+		rt[fd] = ft_strdup("");
+	r = -2;
+	while (r)
 	{
+		r = read(fd, buf, BUFFER_SIZE);
 		if (r < 0)
 			return (-1);
 		tmp = rt[fd];
 		buf[r] = '\0';
-		if (!(rt[fd] = ft_strjoin(rt[fd], buf)))
-			return (-1);
+		rt[fd] = ft_strjoin(rt[fd], buf);
 		free(tmp);
 	}
 	free(buf);

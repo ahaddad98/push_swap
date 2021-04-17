@@ -6,15 +6,15 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/16 13:53:46 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 15:31:11 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-int		ft_strcmp(const char *s1, const char *s2)
+int	ft_strcmp(const char *s1, const char *s2)
 {
-	size_t i;
+	size_t		i;
 
 	i = 0;
 	if ((!s1 || !s2))
@@ -30,9 +30,9 @@ int		ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void        swap_a(char **tab, t_push_swap *push_swap)
+void	swap_a(char **tab, t_push_swap *push_swap)
 {
-    char *p;
+	char		*p;
 
 	if (count_line(push_swap->a) <= 1)
 	{
@@ -40,27 +40,27 @@ void        swap_a(char **tab, t_push_swap *push_swap)
 		push_swap->checker = 1;
 		return ;
 	}
-    p = ft_strdup(push_swap->a[0]);
+	p = ft_strdup(push_swap->a[0]);
 	free(push_swap->a[0]);
-    push_swap->a[0] = ft_strdup(push_swap->a[1]);
+	push_swap->a[0] = ft_strdup(push_swap->a[1]);
 	free(push_swap->a[1]);
-    push_swap->a[1] = ft_strdup(p);
+	push_swap->a[1] = ft_strdup(p);
 	ft_free_arr((void **)&p);
 }
 
-void        swap_b(char **tab, t_push_swap *push_swap)
+void	swap_b(char **tab, t_push_swap *push_swap)
 {
-    char *p;
+	char	*p;
 
 	if (count_line(push_swap->b) <= 1)
 	{
 		push_swap->checker = 1;
 		return ;
 	}
-    p = ft_strdup(push_swap->b[0]);
+	p = ft_strdup(push_swap->b[0]);
 	free(push_swap->b[0]);
-    push_swap->b[0] = ft_strdup(push_swap->b[1]);
+	push_swap->b[0] = ft_strdup(push_swap->b[1]);
 	free(push_swap->b[1]);
-    push_swap->b[1] = ft_strdup(p);
+	push_swap->b[1] = ft_strdup(p);
 	ft_free_arr((void **)&p);
 }

@@ -6,7 +6,7 @@
 /*   By: ahaddad <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/24 10:38:57 by ahaddad           #+#    #+#             */
-/*   Updated: 2019/11/07 18:07:20 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 15:24:24 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 char	*ft_strnstr(const char *s1, const char *s2, size_t len)
 {
-	size_t	i;
-	size_t	j;
+	size_t		i;
+	size_t		j;
 
 	i = 0;
 	j = 0;
 	if (!s2[j])
-		return ((char*)(s1));
+		return ((char *)(s1));
 	while (i < len && s1[i])
 	{
 		j = 0;

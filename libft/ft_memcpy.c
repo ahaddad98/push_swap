@@ -6,13 +6,13 @@
 /*   By: ahaddad <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/18 12:08:02 by ahaddad           #+#    #+#             */
-/*   Updated: 2019/11/07 21:11:23 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 15:17:30 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void		*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
 	char	*p1;
 	char	*p2;

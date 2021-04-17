@@ -6,7 +6,7 @@
 /*   By: ahaddad <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 18:56:23 by ahaddad           #+#    #+#             */
-/*   Updated: 2019/11/08 19:01:37 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 15:12:58 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ static int	check(int reslt, int b, int count)
 	return (reslt * b);
 }
 
-int			ft_atoi(const char *str)
+int	ft_atoi(const char *str)
 {
 	int		a;
 	int		b;
@@ -36,7 +36,7 @@ int			ft_atoi(const char *str)
 	c = 0;
 	counter = 0;
 	while (str[a] == ' ' || str[a] == '\f' || str[a] == '\n' || str[a] == '\t'
-			|| str[a] == '\r' || str[a] == '\v')
+		|| str[a] == '\r' || str[a] == '\v')
 		a++;
 	if (str[a] == '+' || str[a] == '-')
 	{

@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 21:00:44 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/14 13:32:42 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 17:05:17 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ char	*ft_strdup(const char *s1)
 	i = 0;
 	while (s1[i])
 		i++;
-	if (!(t = malloc(sizeof(char) * (i + 1))))
+	t = malloc(sizeof(char) * (i + 1));
+	if (!t)
 		return (NULL);
 	i = 0;
 	while (s1[i])
@@ -73,7 +74,8 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	j = 0;
 	if (!s1 || !s2)
 		return (NULL);
-	if (!(s3 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1))))
+	s3 = malloc(sizeof(char) * (ft_strlen(s1) + ft_strlen(s2) + 1));
+	if (!s3)
 		return (NULL);
 	while (s1[i])
 	{
@@ -98,10 +100,10 @@ char	*ft_strchr(const char *s, int c)
 	while (*a)
 	{
 		if (*a == (unsigned char)c)
-			return ((char*)a);
+			return ((char *)a);
 		a++;
 	}
 	if (*a == (unsigned char)c)
-		return ((char*)a);
+		return ((char *)a);
 	return (NULL);
 }

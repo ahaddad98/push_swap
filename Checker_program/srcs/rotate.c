@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 23:36:48 by amine             #+#    #+#             */
-/*   Updated: 2021/04/17 14:52:31 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/17 15:30:50 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	rotate(char **a, t_push_swap *push_swap, char *msg)
 	free(a[i]);
 	a[i] = ft_strdup(p);
 	ft_free_arr((void **)&p);
-	ft_putendl_fd(msg, 1);
+	msg = NULL;
 }
 
 void	ret_if_not_a(t_push_swap *push_swap)
@@ -71,5 +71,5 @@ void	rot_rot(char **a, t_push_swap *push_swap, char *msg)
 	}
 	if (new_a)
 		ft_free_2dem_arr((void ***)&new_a);
-	ft_putendl_fd(msg, 1);
+	msg = NULL;
 }
