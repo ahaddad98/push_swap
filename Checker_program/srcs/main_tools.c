@@ -6,22 +6,22 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 02:09:12 by amine             #+#    #+#             */
-/*   Updated: 2021/04/16 02:19:09 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/18 00:51:28 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void		ft_free_arr(void **array)
+void	ft_free_arr(void **array)
 {
 	if (*array)
 		free(*array);
 	*array = NULL;
 }
 
-void		ft_free_2dem_arr(void ***arr)
+void	ft_free_2dem_arr(void ***arr)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	while ((*arr)[i])
@@ -34,9 +34,9 @@ void		ft_free_2dem_arr(void ***arr)
 	*arr = NULL;
 }
 
-int				count_line(char **env)
+int	count_line(char **env)
 {
-	int i;
+	int		i;
 
 	i = 0;
 	if (!env)
@@ -46,7 +46,7 @@ int				count_line(char **env)
 	return (i);
 }
 
-char			**ft_strdup_2d(char **str)
+char	**ft_strdup_2d(char **str)
 {
 	int			len;
 	char		**ret;
