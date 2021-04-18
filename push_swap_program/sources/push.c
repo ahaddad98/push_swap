@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/04/18 15:09:08 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:43:03 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,4 +141,6 @@ void	push_a(t_push_swap *push_swap)
 		check_is_empty1(push_swap, new_a, new_b);
 	else
 		psh_isnt_empt(push_swap, new_a, new_b, i);
+	if (push_swap->check_flags == 3)
+		print_a_b(push_swap);
 }

@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 23:36:48 by amine             #+#    #+#             */
-/*   Updated: 2021/04/18 15:31:58 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:44:15 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	rotate(char **a, t_push_swap *push_swap, char *msg)
 	}	
 	else
 		ft_putendl_fd(msg, 1);
+	if (push_swap->check_flags == 3)
+		print_a_b(push_swap);
 }
 
 void	ret_if_not_a(t_push_swap *push_swap)
@@ -96,4 +98,6 @@ void	rot_rot(char **a, t_push_swap *push_swap, char *msg)
 	}	
 	else
 		ft_putendl_fd(msg, 1);
+	if (push_swap->check_flags == 3)
+		print_a_b(push_swap);
 }

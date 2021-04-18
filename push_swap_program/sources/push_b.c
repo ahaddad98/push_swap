@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 13:44:11 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 15:09:53 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:44:00 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,4 +134,6 @@ void	push_b(t_push_swap *push_swap)
 		ft_putendl_fd("\e[1;31mpb\e[0;27m",1);
 	else
 		ft_putendl_fd("pb", 1);
+	if (push_swap->check_flags == 3)
+		print_a_b(push_swap);
 }

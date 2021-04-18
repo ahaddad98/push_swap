@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:09:01 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 13:31:59 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:44:58 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,4 +89,26 @@ int	get_min(t_push_swap *push_swap)
 		i++;
 	}
 	return (push_swap->max_in_arr);
+}
+
+void	print_a_b(t_push_swap *push_swap)
+{
+	int		i;
+	int		k;
+
+	k = 0;
+	puts("----------------------HERE IS A-----------------------");
+	while (push_swap->a && push_swap->a[k])
+	{
+		ft_putendl_fd(push_swap->a[k], 1);
+		k++;
+	}
+	i = 0;
+	puts("-----------------------HERE IS B=====================");
+	while (push_swap->b && push_swap->b[i])
+	{
+		ft_putendl_fd(push_swap->b[i], 1);
+		i++;
+	}
+	sleep(1);
 }
