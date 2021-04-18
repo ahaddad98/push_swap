@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 13:19:49 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 14:16:01 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_push_swap
 	int					j;
 	int					len;
 	int					max_index;
+	int					check_flags;
 	long long int		mediane;
 }		t_push_swap;
 

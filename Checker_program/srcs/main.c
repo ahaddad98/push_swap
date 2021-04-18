@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 13:27:48 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 14:47:20 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,16 @@ int	check_args(char **av, int ac, t_push_swap *push_swap)
 
 	k = 0;
 	push_swap->j = 1;
+	push_swap->check_flags = 0;
 	push_swap->len_of_stack = 0;
+	if (ac > 2)
+	{
+		if (!ft_strcmp(av[1], "-v"))
+		{
+			push_swap->j = 2;
+			push_swap->check_flags = 1;
+		}
+	}
 	while (av[push_swap->j])
 	{
 		k = 0;
@@ -67,7 +76,8 @@ int	main(int ac, char **av)
 		while (get_next_line(0, &line))
 		{
 			get_instruc(&push_swap, line);
-			print_a_b(&push_swap);
+			if (push_swap.check_flags == 1)
+				print_a_b(&push_swap);
 			ft_free_arr((void **)&line);
 		}
 		ft_free_arr((void **)&line);

@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:10:07 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 13:28:39 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 14:37:16 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,8 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 	k = 0;
 	i = 1;
 	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 1));
+	if (push_swap->check_flags)
+		i = 2;
 	while (av[i])
 	{
 		j = 0;

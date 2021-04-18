@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 13:36:48 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:14:06 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,20 @@ int	check_args(char **av, int ac, t_push_swap *push_swap)
 	k = 0;
 	push_swap->j = 1;
 	push_swap->len_of_stack = 0;
+	push_swap->check_flags = 0;
+	if (ac > 2)
+	{
+		if (!ft_strcmp(av[1], "-c"))
+		{
+			push_swap->j = 2;
+			push_swap->check_flags = 2;
+		}
+		if (!ft_strcmp(av[1], "-s"))
+		{
+			push_swap->j = 2;
+			push_swap->check_flags = 3;
+		}
+	}
 	while (av[push_swap->j])
 	{
 		k = 0;
@@ -81,6 +95,8 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 	k = 0;
 	i = 1;
 	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 1));
+	if (push_swap->check_flags)
+		i = 2;
 	while (av[i])
 	{
 		j = 0;
