@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   tools2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 16:09:01 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/17 14:59:21 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 13:31:59 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,42 @@ void	push_b_less_med(t_push_swap *push_swap, int len)
 		}
 	}
 	ft_free_2dem_arr((void ***)&push_swap->med);
+}
+
+int	get_max(t_push_swap *push_swap)
+{
+	int		i;
+
+	i = 1;
+	push_swap->max_index = 0;
+	if (push_swap->b && push_swap->b[0])
+		push_swap->max_in_arr = ft_atoi(push_swap->b[0]);
+	while (push_swap->b && push_swap->b[i])
+	{
+		if (push_swap->max_in_arr < ft_atoi(push_swap->b[i]))
+		{
+			push_swap->max_in_arr = ft_atoi(push_swap->b[i]);
+		}
+		i++;
+	}
+	return (push_swap->max_in_arr);
+}
+
+int	get_min(t_push_swap *push_swap)
+{
+	int		i;
+
+	i = 1;
+	push_swap->max_index = 0;
+	if (push_swap->a && push_swap->a[0])
+		push_swap->max_in_arr = ft_atoi(push_swap->a[0]);
+	while (push_swap->a && push_swap->a[i])
+	{
+		if (push_swap->max_in_arr > ft_atoi(push_swap->a[i]))
+		{
+			push_swap->max_in_arr = ft_atoi(push_swap->a[i]);
+		}
+		i++;
+	}
+	return (push_swap->max_in_arr);
 }

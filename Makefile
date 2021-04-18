@@ -6,7 +6,7 @@
 #    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/04/17 15:29:09 by ahaddad          ###   ########.fr        #
+#    Updated: 2021/04/18 13:12:39 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC_NAME=swap.c\
 		get_next_line_utils.c\
 		push_b.c\
 		main_tools.c\
+		main_tools2.c\
 
 SRC_NAME1=main.c\
 		push.c\

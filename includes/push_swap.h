@@ -3,14 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 03:50:42 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/18 13:19:49 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
+
 # include "../libft/libft.h"
 # include <stdio.h>
 # include <stdlib.h>
@@ -19,7 +21,7 @@
 # include <fcntl.h>
 # define BUFFER_SIZE 1000
 
-typedef struct	s_push_swap
+typedef struct s_push_swap
 {
 	char				**a;
 	char				**b;
@@ -34,7 +36,7 @@ typedef struct	s_push_swap
 	int					len;
 	int					max_index;
 	long long int		mediane;
-}	t_push_swap;
+}		t_push_swap;
 
 void	swap_a(char **ab, t_push_swap *push_swap);
 void	push_a(t_push_swap *push_swap);
@@ -50,22 +52,27 @@ void	ft_free_arr(void **array);
 void	push_b_2(t_push_swap *push_swap);
 void	tri_insert(t_push_swap *push_swap, int len);
 void	get_mediane(t_push_swap *push_swap, int len);
-int	check_under_pivot(char **ag, int pivot);
-int	check_bigg_pivot(char **ag, int pivot);
-int	get_index(t_push_swap *push_swap, int med);
-int	get_index2(t_push_swap *push_swap, int med);
-int	get_index1(t_push_swap *push_swap, int med);
-int	get_max(t_push_swap *push_swap);
-int	get_min(t_push_swap *push_swap);
+int		check_under_pivot(char **ag, int pivot);
+int		check_bigg_pivot(char **ag, int pivot);
+int		get_index(t_push_swap *push_swap, int med);
+int		get_index2(t_push_swap *push_swap, int med);
+int		get_index1(t_push_swap *push_swap, int med);
+int		get_max(t_push_swap *push_swap);
+int		get_min(t_push_swap *push_swap);
 void	algo_3_elem(t_push_swap *push_swap);
 void	algo_less_5_elem(t_push_swap *push_swap);
 void	use_mediane(t_push_swap *push_swap, int len);
-void	push_b_less_med(t_push_swap *push_swap , int len);
+void	push_b_less_med(t_push_swap *push_swap, int len);
 size_t	ft_strlen(const char *str);
 char	*ft_strdup(const char *s1);
 char	*ft_strsub(char const *s, unsigned int start, size_t len);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strchr(const char *s, int c);
-int	get_next_line(int fd, char **line);
+int		get_next_line(int fd, char **line);
+int		check_if_sort(t_push_swap *push_swap);
+void	print_a_b(t_push_swap *push_swap);
+void	get_instruc_com(t_push_swap *push_swap, char *line);
+void	get_instruc(t_push_swap *push_swap, char *line);
+void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 01:53:07 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/18 13:36:48 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,24 +41,62 @@ int	is_num(char *str)
 	return (0);
 }
 
-int	check_args(char **av, int ac)
+int	check_args(char **av, int ac, t_push_swap *push_swap)
 {
-	int		i;
-	int		j;
+	int		k;
+	char	**tab;
 
-	i = 0;
-	j = 1;
-	while (av[j])
+	k = 0;
+	push_swap->j = 1;
+	push_swap->len_of_stack = 0;
+	while (av[push_swap->j])
 	{
-		if (ft_atoi_loong(av[j]) > 2147483647)
-			return (1);
-		else if (ft_atoi_loong(av[j]) < -2147483648)
-			return (1);
-		else if (is_num(av[j]) == 1)
-			return (1);
-		j++;
+		k = 0;
+		tab = ft_split(av[push_swap->j], ' ');
+		while (tab[k])
+		{
+			if (ft_atoi_loong(tab[k]) > 2147483647)
+				return (1);
+			else if (ft_atoi_loong(tab[k]) < -2147483648)
+				return (1);
+			else if (is_num(tab[k]) == 1)
+				return (1);
+			k++;
+			push_swap->len_of_stack++;
+		}
+		ft_free_2dem_arr((void ***)&tab);
+		push_swap->j++;
 	}
 	return (0);
+}
+
+void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
+{
+	int		k;
+	int		i;
+	int		j;
+	char	**tab;
+
+	j = 0;
+	k = 0;
+	i = 1;
+	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 1));
+	while (av[i])
+	{
+		j = 0;
+		tab = ft_split(av[i], ' ');
+		while (tab[j])
+		{
+			push_swap->a[k] = ft_strdup(tab[j]);
+			j++;
+			k++;
+		}
+		ft_free_2dem_arr((void ***)&tab);
+		i++;
+	}
+	push_swap->a[k] = NULL;
+	push_swap->b = NULL;
+	push_swap->checker = 0;
 }
 
 int	main(int ac, char **av)
@@ -72,17 +110,9 @@ int	main(int ac, char **av)
 	k = 0;
 	i = 1;
 	len = 0;
-	if (ac > 1 && !check_args(av, ac))
+	if (ac > 1 && !check_args(av, ac, &push_swap))
 	{
-		push_swap.a = malloc(sizeof(char *) * (ac + 1));
-		while (av[i])
-		{
-			push_swap.a[k] = ft_strdup(av[i]);
-			i++;
-			k++;
-		}
-		push_swap.a[k] = NULL;
-		push_swap.b = NULL;
+		get_a_from_arg(&push_swap, av, ac);
 		len = count_line(push_swap.a);
 		which_algo(&push_swap, len);
 		if (push_swap.a)
@@ -90,5 +120,7 @@ int	main(int ac, char **av)
 		if (push_swap.b)
 			ft_free_2dem_arr((void ***)&push_swap.b);
 	}
+	else
+		ft_putendl_fd("Error", 1);
 	return (0);
 }
