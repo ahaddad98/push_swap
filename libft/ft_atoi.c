@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/17 18:56:23 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/17 15:12:58 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 02:15:23 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,30 @@ int	ft_atoi(const char *str)
 		counter++;
 	}
 	return (check(c, b, counter));
+}
+
+long long	ft_atoi_loong(char *str)
+{
+	long long		ret;
+	int				sign;
+	int				i;
+
+	i = 0;
+	ret = 0;
+	sign = 1;
+	while (str[i] == ' ' || str[i] == '\r' || str[i] == '\f' || str[i] == '\n'
+			|| str[i] == '\v' || str[i] == '\t')
+		i++;
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign = -1 * sign;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		ret = ret * 10 + str[i] - '0';
+		i++;
+	}
+	return (ret * sign);
 }

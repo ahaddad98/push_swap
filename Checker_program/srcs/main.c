@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
+/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/17 17:34:48 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 03:18:10 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,10 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 {
 	int		k;
 	int		i;
+	int		j;
+	char	**tab;
 
+	j = 0;
 	k = 0;
 	i = 1;
 	push_swap->a = malloc(sizeof(char *) * ac);
@@ -119,33 +122,81 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 	push_swap->checker = 0;
 }
 
+int	is_num(char *str)
+{
+	int		i;
+
+	i = 0;
+	while (str[i])
+	{
+		if (ft_isdigit(str[i]) == 0)
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	check_args(char **av, int ac)
+{
+	int		i;
+	int		j;
+	int		k;
+	char	**tab;
+	
+	k = 0;
+	i = 0;
+	j = 1;
+	while (av[j])
+	{
+		tab = ft_split(av[j], ' ');
+		while (tab[k])
+		{
+			if (ft_atoi_loong(tab[k]) > 2147483647)
+				return (1);
+			else if (ft_atoi_loong(tab[k]) < -2147483648)
+				return (1);
+			else if (is_num(tab[k]) == 1)
+				return (1);
+			k++;
+		}
+		ft_free_2dem_arr((void ***)&tab);
+		j++;
+	}
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	t_push_swap		push_swap;
 	char			*line;
 	int				ret_read;
 
-	get_a_from_arg(&push_swap, av, ac);
-	ret_read = 1;
-	while (1)
+	if (ac > 1 && !check_args(av, ac))
 	{
-		ret_read = get_next_line(0, &line);
-		if (!ft_strcmp(line, "\n"))
-			continue ;
-		get_instruc(&push_swap, line);
-		if (ft_strlen(line) == 0)
-			break ;
+		get_a_from_arg(&push_swap, av, ac);
+		ret_read = 1;
+		while (1)
+		{
+			ret_read = get_next_line(0, &line);
+			if (!ft_strcmp(line, "\n"))
+				continue ;
+			get_instruc(&push_swap, line);
+			if (ft_strlen(line) == 0)
+				break ;
+			ft_free_arr((void **)&line);
+		}
 		ft_free_arr((void **)&line);
+		if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
+			puts("OK");
+		else
+			puts("KO");
+		print_a_b(&push_swap);
+		if (push_swap.a)
+			ft_free_2dem_arr((void ***)&push_swap.a);
+		if (push_swap.b)
+			ft_free_2dem_arr((void ***)&push_swap.b);
 	}
-	ft_free_arr((void **)&line);
-	if ((check_if_sort(&push_swap) == 0) && !count_line(push_swap.b))
-		puts("OK");
 	else
-		puts("KO");
-	print_a_b(&push_swap);
-	if (push_swap.a)
-		ft_free_2dem_arr((void ***)&push_swap.a);
-	if (push_swap.b)
-		ft_free_2dem_arr((void ***)&push_swap.b);
+		ft_putendl_fd("Error", 1);
 	return (0);
 }
