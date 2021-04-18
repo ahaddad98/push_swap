@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 13:44:11 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:02:49 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:48:22 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,10 +117,11 @@ void	push_b(t_push_swap *push_swap)
 {
 	char	**new_a;
 	char	**new_b;
-	int		len_a;
 	int		i;
 
 	i = -1;
+	new_a = NULL;
+	new_b = NULL;
 	if (push_swap->a == NULL)
 	{
 		push_swap->checker = 1;

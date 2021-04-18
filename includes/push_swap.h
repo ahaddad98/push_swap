@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:04:41 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:44:50 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ typedef struct s_push_swap
 	long long int		mediane;
 }		t_push_swap;
 
-void	swap_a(char **ab, t_push_swap *push_swap);
+void	swap_a(t_push_swap *push_swap);
 void	push_a(t_push_swap *push_swap);
 void	push_b(t_push_swap *push_swap);
 char	**ft_strdup_2d(char **str);
@@ -47,7 +47,7 @@ int		count_line(char **env);
 void	rotate(char **a, t_push_swap *push_swap, char *msg);
 void	rot_rot(char **a, t_push_swap *push_swap, char *msg);
 int		ft_strcmp(const char *s1, const char *s2);
-void	swap_b(char **tab, t_push_swap *push_swap);
+void	swap_b(t_push_swap *push_swap);
 void	ft_free_2dem_arr(void ***arr);
 void	ft_free_arr(void **array);
 void	push_b_2(t_push_swap *push_swap);
@@ -74,7 +74,7 @@ int		check_if_sort(t_push_swap *push_swap);
 void	print_a_b(t_push_swap *push_swap);
 void	get_instruc_com(t_push_swap *push_swap, char *line);
 void	get_instruc(t_push_swap *push_swap, char *line);
-void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac);
+void	get_a_from_arg(t_push_swap *push_swap, char **av);
 void	yellow(void);
 void	red(void);
 void	get_flag(t_push_swap *push_swap, char **av, int ac);

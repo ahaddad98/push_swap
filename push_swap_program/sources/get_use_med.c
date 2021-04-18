@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/13 01:29:59 by amine             #+#    #+#             */
-/*   Updated: 2021/04/17 13:29:40 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:49:40 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	use_mediane(t_push_swap *push_swap, int len)
 	int		max;
 
 	len_b = 0;
+	max = 0;
 	get_mediane(push_swap, len);
 	push_swap->nbr_of_inst = 0;
 	push_b_less_med(push_swap, len);

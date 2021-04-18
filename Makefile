@@ -6,7 +6,7 @@
 #    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/04/18 16:00:35 by ahaddad          ###   ########.fr        #
+#    Updated: 2021/04/18 16:38:42 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,7 +57,7 @@ SRC1= $(addprefix $(SRC_PATH1)/,$(SRC_NAME1))
 HDR1= $(addprefix $(HDR_PATH)/,$(HDR_NAME))
 
 LIB= libft.a
-# FLAGS= -Wall -Wextra -Werror
+FLAGS= -Wall -Wextra -Werror
 LLIB_FLAG= -L$(LIB_PATH) libft/libft.a
 H_FLAG= -I $(HDR_PATH)
 

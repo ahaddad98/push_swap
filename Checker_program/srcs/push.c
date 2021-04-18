@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 00:12:50 by amine             #+#    #+#             */
-/*   Updated: 2021/04/17 15:30:17 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:42:19 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,6 @@ void	get_b(t_push_swap *push_swap, char **new_b)
 
 void	check_is_empty1(t_push_swap *push_swap, char **new_a, char **new_b)
 {
-	int		i;
-	int		j;
-
 	new_a = malloc(sizeof(char *) * 2);
 	new_a[0] = ft_strdup(push_swap->b[0]);
 	new_a[1] = NULL;
@@ -122,7 +119,6 @@ void	push_a(t_push_swap *push_swap)
 {
 	char	**new_a;
 	char	**new_b;
-	int		len_a;
 	int		i;
 
 	new_b = NULL;

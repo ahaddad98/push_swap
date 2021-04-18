@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/17 14:53:33 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:40:00 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 	return (0);
 }
 
-void	swap_a(char **tab, t_push_swap *push_swap)
+void	swap_a(t_push_swap *push_swap)
 {
 	char		*p;
 
@@ -49,7 +49,7 @@ void	swap_a(char **tab, t_push_swap *push_swap)
 	ft_putendl_fd("sa", 1);
 }
 
-void	swap_b(char **tab, t_push_swap *push_swap)
+void	swap_b(t_push_swap *push_swap)
 {
 	char	*p;
 

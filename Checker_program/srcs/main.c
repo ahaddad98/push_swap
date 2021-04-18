@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:35:55 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:45:09 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,11 +82,10 @@ int	main(int ac, char **av)
 {
 	t_push_swap		push_swap;
 	char			*line;
-	int				ret_read;
 
 	if (ac > 1 && !check_args(av, ac, &push_swap))
 	{
-		get_a_from_arg(&push_swap, av, ac);
+		get_a_from_arg(&push_swap, av);
 		push_swap.b = NULL;
 		while (get_next_line(0, &line))
 		{

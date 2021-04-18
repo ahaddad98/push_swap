@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:10:07 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:35:44 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:44:22 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,13 +85,13 @@ void	get_instruc_com(t_push_swap *push_swap, char *line)
 void	get_instruc(t_push_swap *push_swap, char *line)
 {
 	if (!ft_strcmp(line, "sa"))
-		swap_a(push_swap->a, push_swap);
+		swap_a(push_swap);
 	if (!ft_strcmp(line, "sb"))
-		swap_b(push_swap->b, push_swap);
+		swap_b(push_swap);
 	if (!ft_strcmp(line, "ss"))
 	{
-		swap_a(push_swap->b, push_swap);
-		swap_b(push_swap->a, push_swap);
+		swap_a(push_swap);
+		swap_b(push_swap);
 	}
 	if (!ft_strcmp(line, "pa"))
 		push_a(push_swap);
@@ -100,7 +100,7 @@ void	get_instruc(t_push_swap *push_swap, char *line)
 	get_instruc_com(push_swap, line);
 }
 
-void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
+void	get_a_from_arg(t_push_swap *push_swap, char **av)
 {
 	int		k;
 	int		i;
