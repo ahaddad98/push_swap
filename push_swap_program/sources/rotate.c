@@ -6,20 +6,24 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/28 23:36:48 by amine             #+#    #+#             */
-/*   Updated: 2021/04/18 15:44:15 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 15:59:45 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/push_swap.h"
 
-void	red()
+void	pri_check(t_push_swap *push_swap, char *msg)
 {
-	ft_putstr_fd("\033[0;35m", 1);
-}
-
-void	yellow()
-{
-	ft_putstr_fd("\033[0;33m", 1);
+	if (push_swap->check_flags == 2)
+	{
+		red();
+		ft_putstr_fd(msg, 1);
+		write(1, "\n", 1);
+	}	
+	else
+		ft_putendl_fd(msg, 1);
+	if (push_swap->check_flags == 3)
+		print_a_b(push_swap);
 }
 
 void	rotate(char **a, t_push_swap *push_swap, char *msg)
@@ -46,22 +50,27 @@ void	rotate(char **a, t_push_swap *push_swap, char *msg)
 	free(a[i]);
 	a[i] = ft_strdup(p);
 	ft_free_arr((void **)&p);
-	if (push_swap->check_flags == 2)
-	{
-		red();
-		ft_putstr_fd(msg, 1);
-		write(1,"\n",1);
-	}	
-	else
-		ft_putendl_fd(msg, 1);
-	if (push_swap->check_flags == 3)
-		print_a_b(push_swap);
+	pri_check(push_swap, msg);
 }
 
 void	ret_if_not_a(t_push_swap *push_swap)
 {
 	push_swap->checker = 1;
 	return ;
+}
+
+void	pri_check_2(t_push_swap *push_swap, char *msg)
+{
+	if (push_swap->check_flags == 2)
+	{
+		yellow();
+		ft_putstr_fd(msg, 1);
+		write(1, "\n", 1);
+	}	
+	else
+		ft_putendl_fd(msg, 1);
+	if (push_swap->check_flags == 3)
+		print_a_b(push_swap);
 }
 
 void	rot_rot(char **a, t_push_swap *push_swap, char *msg)
@@ -90,14 +99,5 @@ void	rot_rot(char **a, t_push_swap *push_swap, char *msg)
 	}
 	if (new_a)
 		ft_free_2dem_arr((void ***)&new_a);
-	if (push_swap->check_flags == 2)
-	{
-		yellow();
-		ft_putstr_fd(msg, 1);
-		write(1,"\n",1);
-	}	
-	else
-		ft_putendl_fd(msg, 1);
-	if (push_swap->check_flags == 3)
-		print_a_b(push_swap);
+	pri_check_2(push_swap, msg);
 }

@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 15:14:06 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:05:55 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,22 +47,7 @@ int	check_args(char **av, int ac, t_push_swap *push_swap)
 	char	**tab;
 
 	k = 0;
-	push_swap->j = 1;
-	push_swap->len_of_stack = 0;
-	push_swap->check_flags = 0;
-	if (ac > 2)
-	{
-		if (!ft_strcmp(av[1], "-c"))
-		{
-			push_swap->j = 2;
-			push_swap->check_flags = 2;
-		}
-		if (!ft_strcmp(av[1], "-s"))
-		{
-			push_swap->j = 2;
-			push_swap->check_flags = 3;
-		}
-	}
+	get_flag(push_swap, av, ac);
 	while (av[push_swap->j])
 	{
 		k = 0;
@@ -111,8 +96,6 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 		i++;
 	}
 	push_swap->a[k] = NULL;
-	push_swap->b = NULL;
-	push_swap->checker = 0;
 }
 
 int	main(int ac, char **av)
@@ -129,6 +112,8 @@ int	main(int ac, char **av)
 	if (ac > 1 && !check_args(av, ac, &push_swap))
 	{
 		get_a_from_arg(&push_swap, av, ac);
+		push_swap.b = NULL;
+		push_swap.checker = 0;
 		len = count_line(push_swap.a);
 		which_algo(&push_swap, len);
 		if (push_swap.a)

@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 14:47:20 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:35:55 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,8 @@ int	is_num(char *str)
 	return (0);
 }
 
-int	check_args(char **av, int ac, t_push_swap *push_swap)
+void	check_flg(t_push_swap *push_swap, char **av, int ac)
 {
-	int		k;
-	char	**tab;
-
-	k = 0;
 	push_swap->j = 1;
 	push_swap->check_flags = 0;
 	push_swap->len_of_stack = 0;
@@ -43,6 +39,15 @@ int	check_args(char **av, int ac, t_push_swap *push_swap)
 			push_swap->check_flags = 1;
 		}
 	}
+}
+
+int	check_args(char **av, int ac, t_push_swap *push_swap)
+{
+	int		k;
+	char	**tab;
+
+	k = 0;
+	check_flg(push_swap, av, ac);
 	while (av[push_swap->j])
 	{
 		k = 0;
@@ -61,7 +66,16 @@ int	check_args(char **av, int ac, t_push_swap *push_swap)
 		ft_free_2dem_arr((void ***)&tab);
 		push_swap->j++;
 	}
+	push_swap->checker = 0;
 	return (0);
+}
+
+void	check_if_ok(t_push_swap *push_swap)
+{
+	if (!check_if_sort(push_swap) && !count_line(push_swap->b))
+		ft_putendl_fd("OK", 1);
+	else
+		ft_putendl_fd("KO", 1);
 }
 
 int	main(int ac, char **av)
@@ -73,6 +87,7 @@ int	main(int ac, char **av)
 	if (ac > 1 && !check_args(av, ac, &push_swap))
 	{
 		get_a_from_arg(&push_swap, av, ac);
+		push_swap.b = NULL;
 		while (get_next_line(0, &line))
 		{
 			get_instruc(&push_swap, line);
@@ -81,6 +96,7 @@ int	main(int ac, char **av)
 			ft_free_arr((void **)&line);
 		}
 		ft_free_arr((void **)&line);
+		check_if_ok(&push_swap);
 		if (push_swap.a)
 			ft_free_2dem_arr((void ***)&push_swap.a);
 		if (push_swap.b)

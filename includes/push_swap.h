@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 14:16:01 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:04:41 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,8 @@ void	print_a_b(t_push_swap *push_swap);
 void	get_instruc_com(t_push_swap *push_swap, char *line);
 void	get_instruc(t_push_swap *push_swap, char *line);
 void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac);
+void	yellow(void);
+void	red(void);
+void	get_flag(t_push_swap *push_swap, char **av, int ac);
 
 #endif

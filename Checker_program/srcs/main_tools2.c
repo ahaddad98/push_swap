@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:10:07 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 14:37:16 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 16:35:44 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,11 @@ int	check_if_sort(t_push_swap *push_swap)
 	k = 0;
 	while (push_swap->a && push_swap->a[i])
 	{
-		j = i;
+		j = i + 1;
 		while (push_swap->a[j])
 		{
-			if (push_swap->a[i] > push_swap->a[j])
-			{
+			if (ft_atoi(push_swap->a[i]) > ft_atoi(push_swap->a[j]))
 				return (1);
-			}
 			j++;
 		}
 		i++;
@@ -129,6 +127,4 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 		i++;
 	}
 	push_swap->a[k] = NULL;
-	push_swap->b = NULL;
-	push_swap->checker = 0;
 }
