@@ -6,7 +6,7 @@
 /*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 03:18:10 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/18 04:00:52 by amine            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,12 +110,18 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 	j = 0;
 	k = 0;
 	i = 1;
-	push_swap->a = malloc(sizeof(char *) * ac);
-	while (i < ac)
+	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 1));
+	while (av[i])
 	{
-		push_swap->a[k] = ft_strdup(av[i]);
+		j = 0;
+		tab = ft_split(av[i] , ' ');
+		while (tab[j])
+		{
+			push_swap->a[k] = ft_strdup(tab[j]);
+			j++;
+			k++;
+		}
 		i++;
-		k++;
 	}
 	push_swap->a[k] = NULL;
 	push_swap->b = NULL;
@@ -136,7 +142,7 @@ int	is_num(char *str)
 	return (0);
 }
 
-int	check_args(char **av, int ac)
+int	check_args(char **av, int ac, t_push_swap *push_swap)
 {
 	int		i;
 	int		j;
@@ -146,8 +152,10 @@ int	check_args(char **av, int ac)
 	k = 0;
 	i = 0;
 	j = 1;
+	push_swap->len_of_stack = 0;
 	while (av[j])
 	{
+		k = 0;
 		tab = ft_split(av[j], ' ');
 		while (tab[k])
 		{
@@ -158,6 +166,7 @@ int	check_args(char **av, int ac)
 			else if (is_num(tab[k]) == 1)
 				return (1);
 			k++;
+			push_swap->len_of_stack++;
 		}
 		ft_free_2dem_arr((void ***)&tab);
 		j++;
@@ -171,15 +180,13 @@ int	main(int ac, char **av)
 	char			*line;
 	int				ret_read;
 
-	if (ac > 1 && !check_args(av, ac))
+	if (ac > 1 && !check_args(av, ac, &push_swap))
 	{
 		get_a_from_arg(&push_swap, av, ac);
 		ret_read = 1;
 		while (1)
 		{
 			ret_read = get_next_line(0, &line);
-			if (!ft_strcmp(line, "\n"))
-				continue ;
 			get_instruc(&push_swap, line);
 			if (ft_strlen(line) == 0)
 				break ;
