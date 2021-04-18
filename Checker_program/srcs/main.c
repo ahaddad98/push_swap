@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: amine <amine@student.42.fr>                +#+  +:+       +#+        */
+/*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 13:38:15 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 04:00:52 by amine            ###   ########.fr       */
+/*   Updated: 2021/04/18 12:49:56 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,20 +42,22 @@ void	print_a_b(t_push_swap *push_swap)
 	int		i;
 	int		k;
 
+	system("clear");
 	k = 0;
-	puts("--------------------------------------------------------------");
+	puts("----------------------HERE IS A-----------------------");
 	while (push_swap->a && push_swap->a[k])
 	{
 		ft_putendl_fd(push_swap->a[k], 1);
 		k++;
 	}
 	i = 0;
-	puts("--------------------------------------------------------------");
+	puts("-----------------------HERE IS B=====================");
 	while (push_swap->b && push_swap->b[i])
 	{
 		ft_putendl_fd(push_swap->b[i], 1);
 		i++;
 	}
+	sleep(1);
 }
 
 void	get_instruc_com(t_push_swap *push_swap, char *line)
@@ -121,6 +123,7 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av, int ac)
 			j++;
 			k++;
 		}
+		ft_free_2dem_arr((void ***)&tab);
 		i++;
 	}
 	push_swap->a[k] = NULL;
@@ -183,13 +186,11 @@ int	main(int ac, char **av)
 	if (ac > 1 && !check_args(av, ac, &push_swap))
 	{
 		get_a_from_arg(&push_swap, av, ac);
-		ret_read = 1;
-		while (1)
+		// ret_read = -1;
+		while (get_next_line(0, &line))
 		{
-			ret_read = get_next_line(0, &line);
 			get_instruc(&push_swap, line);
-			if (ft_strlen(line) == 0)
-				break ;
+			print_a_b(&push_swap);
 			ft_free_arr((void **)&line);
 		}
 		ft_free_arr((void **)&line);
@@ -197,7 +198,6 @@ int	main(int ac, char **av)
 			puts("OK");
 		else
 			puts("KO");
-		print_a_b(&push_swap);
 		if (push_swap.a)
 			ft_free_2dem_arr((void ***)&push_swap.a);
 		if (push_swap.b)

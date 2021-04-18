@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/12/26 20:55:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/17 17:03:52 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/18 12:44:59 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	get_next_line(int fd, char **line)
 	if (!rt[fd])
 		rt[fd] = ft_strdup("");
 	r = -2;
-	while (r)
+	while ((!ft_strchr(rt[fd], '\n')) && r)
 	{
 		r = read(fd, buf, BUFFER_SIZE);
 		if (r < 0)
