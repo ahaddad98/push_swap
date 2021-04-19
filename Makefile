@@ -6,7 +6,7 @@
 #    By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/03/26 13:45:54 by ahaddad           #+#    #+#              #
-#    Updated: 2021/04/18 16:38:42 by ahaddad          ###   ########.fr        #
+#    Updated: 2021/04/19 17:31:32 by ahaddad          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ SRC_NAME=swap.c\
 		push_b.c\
 		main_tools.c\
 		main_tools2.c\
-
+		main_tools3.c\
+		
 SRC_NAME1=main.c\
 		push.c\
 		push_b.c\
@@ -42,6 +43,7 @@ SRC_NAME1=main.c\
 		tools2.c\
 		algo_five.c\
 		color.c\
+		tools3.c\
 
 HDR_NAME=push_swap.h
 

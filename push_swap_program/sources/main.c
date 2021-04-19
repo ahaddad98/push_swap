@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/19 16:15:37 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/19 17:36:55 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,38 +57,25 @@ int	check_args(char **av, int ac, t_push_swap *push_swap)
 	int		k;
 	char	**tab;
 
-	k = 0;
 	get_flag(push_swap, av, ac);
 	while (av[push_swap->j])
 	{
 		k = 0;
 		tab = ft_split(av[push_swap->j], ' ');
 		if (!tab[k])
-		{
-			ft_free_2dem_arr((void ***)&tab);
-			return (1);
-		}
+			return (free_ret(tab));
 		while (tab && tab[k])
 		{
 			if (ft_atoi_loong(tab[k]) > 2147483647)
-			{
-				ft_free_2dem_arr((void ***)&tab);
-				return (1);
-			}
+				return (free_ret(tab));
 			else if (ft_atoi_loong(tab[k]) < -2147483648)
-			{
-				ft_free_2dem_arr((void ***)&tab);
-				return (1);
-			}
+				return (free_ret(tab));
 			else if (is_num(tab[k]) == 1)
-			{
-				ft_free_2dem_arr((void ***)&tab);
-				return (1);
-			}
+				return (free_ret(tab));
 			k++;
-			ft_free_2dem_arr((void ***)&tab);
 			push_swap->len_of_stack++;
 		}
+		ft_free_2dem_arr((void ***)&tab);
 		push_swap->j++;
 	}
 	return (0);
@@ -140,10 +127,7 @@ int	main(int ac, char **av)
 			ft_putendl_fd("Error", 1);
 		else if (push_swap.a && check_if_sort(&push_swap))
 		{
-			push_swap.b = NULL;
-			push_swap.checker = 0;
-			len = count_line(push_swap.a);
-			which_algo(&push_swap, len);
+			p_s_now(&push_swap, len);
 			if (push_swap.b)
 				ft_free_2dem_arr((void ***)&push_swap.b);
 		}

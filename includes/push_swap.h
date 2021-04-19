@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/19 14:05:26 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/19 17:37:20 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,10 @@ void	yellow(void);
 void	red(void);
 void	get_flag(t_push_swap *push_swap, char **av, int ac);
 int		check_if_duplic(t_push_swap *push_swap);
+int		free_ret(char **tab);
+void	check_flg(t_push_swap *push_swap, char **av, int ac);
+int		is_num(char *str);
+void	p_s_now(t_push_swap *push_swap, int len);
+void	which_algo(t_push_swap *push_swap, int len);
 
 #endif

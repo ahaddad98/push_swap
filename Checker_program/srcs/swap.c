@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 16:22:41 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:39:27 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/19 17:42:27 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	swap_a(t_push_swap *push_swap)
 
 	if (count_line(push_swap->a) <= 1)
 	{
-		ft_putnbr_fd(count_line(push_swap->a), 1);
 		push_swap->checker = 1;
 		return ;
 	}
