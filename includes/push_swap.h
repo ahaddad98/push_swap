@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/26 15:10:12 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:44:50 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/19 14:05:26 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_push_swap
 	int					len;
 	int					max_index;
 	int					check_flags;
+	int					check_instruc;
 	long long int		mediane;
 }		t_push_swap;
 
@@ -72,11 +73,12 @@ char	*ft_strchr(const char *s, int c);
 int		get_next_line(int fd, char **line);
 int		check_if_sort(t_push_swap *push_swap);
 void	print_a_b(t_push_swap *push_swap);
-void	get_instruc_com(t_push_swap *push_swap, char *line);
+int		get_instruc_com(t_push_swap *push_swap, char *line);
 void	get_instruc(t_push_swap *push_swap, char *line);
 void	get_a_from_arg(t_push_swap *push_swap, char **av);
 void	yellow(void);
 void	red(void);
 void	get_flag(t_push_swap *push_swap, char **av, int ac);
+int		check_if_duplic(t_push_swap *push_swap);
 
 #endif

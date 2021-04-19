@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/18 13:10:07 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:44:22 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/19 16:15:48 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,46 +58,51 @@ void	print_a_b(t_push_swap *push_swap)
 	sleep(1);
 }
 
-void	get_instruc_com(t_push_swap *push_swap, char *line)
+int	get_instruc_com(t_push_swap *push_swap, char *line)
 {
 	if (!ft_strcmp(line, "ra"))
 		rotate(push_swap->a, push_swap, NULL);
-	if (!ft_strcmp(line, "rb"))
+	else if (!ft_strcmp(line, "rb"))
 		rotate(push_swap->b, push_swap, NULL);
-	if (!ft_strcmp(line, "rr"))
+	else if (!ft_strcmp(line, "rr"))
 	{
 		rotate(push_swap->a, push_swap, NULL);
 		rotate(push_swap->b, push_swap, NULL);
 	}
-	if (!ft_strcmp(line, "rra"))
+	else if (!ft_strcmp(line, "rra"))
 		rot_rot(push_swap->a, push_swap, NULL);
-	if (!ft_strcmp(line, "rrb"))
+	else if (!ft_strcmp(line, "rrb"))
 		rot_rot(push_swap->b, push_swap, NULL);
-	if (!ft_strcmp(line, "rrr"))
+	else if (!ft_strcmp(line, "rrr"))
 	{
 		rot_rot(push_swap->a, push_swap, NULL);
 		rot_rot(push_swap->b, push_swap, NULL);
 	}
+	else
+		push_swap->check_instruc = 1;
 	if (count_line(push_swap->b) != 0)
 		push_swap->checker = 1;
+	return (1);
 }
 
 void	get_instruc(t_push_swap *push_swap, char *line)
 {
+	push_swap->check_instruc = 0;
 	if (!ft_strcmp(line, "sa"))
 		swap_a(push_swap);
-	if (!ft_strcmp(line, "sb"))
+	else if (!ft_strcmp(line, "sb"))
 		swap_b(push_swap);
-	if (!ft_strcmp(line, "ss"))
+	else if (!ft_strcmp(line, "ss"))
 	{
 		swap_a(push_swap);
 		swap_b(push_swap);
 	}
-	if (!ft_strcmp(line, "pa"))
+	else if (!ft_strcmp(line, "pa"))
 		push_a(push_swap);
-	if (!ft_strcmp(line, "pb"))
+	else if (!ft_strcmp(line, "pb"))
 		push_b(push_swap);
-	get_instruc_com(push_swap, line);
+	else
+		get_instruc_com(push_swap, line);
 }
 
 void	get_a_from_arg(t_push_swap *push_swap, char **av)
@@ -110,7 +115,7 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av)
 	j = 0;
 	k = 0;
 	i = 1;
-	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 1));
+	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 2));
 	if (push_swap->check_flags)
 		i = 2;
 	while (av[i])

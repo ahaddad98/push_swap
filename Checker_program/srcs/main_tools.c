@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/04/16 02:09:12 by amine             #+#    #+#             */
-/*   Updated: 2021/04/18 13:28:15 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/19 15:35:44 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,4 +63,27 @@ char	**ft_strdup_2d(char **str)
 	}
 	ret[i] = NULL;
 	return (ret);
+}
+
+int	check_if_duplic(t_push_swap *push_swap)
+{
+	int		i;
+	int		j;
+	int		k;
+
+	i = 0;
+	j = 0;
+	k = 0;
+	while (push_swap->a && push_swap->a[i])
+	{
+		j = i + 1;
+		while (push_swap->a[j])
+		{
+			if (ft_atoi(push_swap->a[i]) == ft_atoi(push_swap->a[j]))
+				return (1);
+			j++;
+		}
+		i++;
+	}
+	return (0);
 }

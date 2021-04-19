@@ -6,7 +6,7 @@
 /*   By: ahaddad <ahaddad@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/30 12:04:37 by ahaddad           #+#    #+#             */
-/*   Updated: 2021/04/18 16:46:32 by ahaddad          ###   ########.fr       */
+/*   Updated: 2021/04/19 16:15:37 by ahaddad          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,19 @@ int	is_num(char *str)
 	int		i;
 
 	i = 0;
+	if (ft_strlen(str) == 1)
+		if (ft_isdigit(str[i]) == 0)
+			return (1);
 	while (str[i])
 	{
+		if (i == 0)
+		{
+			if (str[i] == '-')
+			{
+				i++;
+				continue ;
+			}
+		}
 		if (ft_isdigit(str[i]) == 0)
 			return (1);
 		i++;
@@ -52,18 +63,32 @@ int	check_args(char **av, int ac, t_push_swap *push_swap)
 	{
 		k = 0;
 		tab = ft_split(av[push_swap->j], ' ');
-		while (tab[k])
+		if (!tab[k])
+		{
+			ft_free_2dem_arr((void ***)&tab);
+			return (1);
+		}
+		while (tab && tab[k])
 		{
 			if (ft_atoi_loong(tab[k]) > 2147483647)
+			{
+				ft_free_2dem_arr((void ***)&tab);
 				return (1);
+			}
 			else if (ft_atoi_loong(tab[k]) < -2147483648)
+			{
+				ft_free_2dem_arr((void ***)&tab);
 				return (1);
+			}
 			else if (is_num(tab[k]) == 1)
+			{
+				ft_free_2dem_arr((void ***)&tab);
 				return (1);
+			}
 			k++;
+			ft_free_2dem_arr((void ***)&tab);
 			push_swap->len_of_stack++;
 		}
-		ft_free_2dem_arr((void ***)&tab);
 		push_swap->j++;
 	}
 	return (0);
@@ -79,7 +104,7 @@ void	get_a_from_arg(t_push_swap *push_swap, char **av)
 	j = 0;
 	k = 0;
 	i = 1;
-	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 1));
+	push_swap->a = malloc(sizeof(char *) * (push_swap->len_of_stack + 2));
 	if (push_swap->check_flags)
 		i = 2;
 	while (av[i])
@@ -106,21 +131,26 @@ int	main(int ac, char **av)
 	int				k;
 
 	k = 0;
-	i = 1;
+	i = 0;
 	len = 0;
 	if (ac > 1 && !check_args(av, ac, &push_swap))
 	{
 		get_a_from_arg(&push_swap, av);
-		push_swap.b = NULL;
-		push_swap.checker = 0;
-		len = count_line(push_swap.a);
-		which_algo(&push_swap, len);
+		if (check_if_duplic(&push_swap))
+			ft_putendl_fd("Error", 1);
+		else if (push_swap.a && check_if_sort(&push_swap))
+		{
+			push_swap.b = NULL;
+			push_swap.checker = 0;
+			len = count_line(push_swap.a);
+			which_algo(&push_swap, len);
+			if (push_swap.b)
+				ft_free_2dem_arr((void ***)&push_swap.b);
+		}
 		if (push_swap.a)
 			ft_free_2dem_arr((void ***)&push_swap.a);
-		if (push_swap.b)
-			ft_free_2dem_arr((void ***)&push_swap.b);
 	}
-	else
+	else if (ac > 1)
 		ft_putendl_fd("Error", 1);
 	return (0);
 }
